@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - WebEventos</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <nav class="navbar navbar-fixed-top" role="navigation" style="background-color: dodgerblue;">
+
+        <div class="navbar-header">
+            <label class="navbar-brand" style="color: white;">Gerenciador de Eventos</label>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+
+            <li>
+                <a href="#" id="menu-toggle" tabindex="-1" style="background-color: transparent;color: white; width: auto; height: auto;" data-toggle="tooltip" data-placement="bottom" title="Menu"><i class="glyphicon glyphicon-home"></i></a>
+            </li>
+
+            @if (System.Web.HttpContext.Current.Session["userName"] == null)
+            {
+                <li>
+                    <a href="#" tabindex="-1" style="background-color: transparent;color: white; width: auto; height: auto;" data-toggle="tooltip" data-placement="bottom" title="Nenhum">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </a>
+                </li>
+            }
+
+            else
+            {
+                <li>
+                    <a href="#" tabindex="-1" style="background-color: transparent;color: white; width: auto; height: auto;" data-toggle="tooltip" data-placement="bottom" title="@System.Web.HttpContext.Current.Session["userName"].ToString()">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </a>
+                </li>
+            }
+
+            <li>
+                <a href="#" style="background-color: transparent;color: white; width: auto; height: auto;" data-toggle="tooltip" data-placement="bottom" title="@DateTime.Now.ToShortDateString()">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="#" style="background-color: transparent;color: white; width: auto; height: auto;" data-toggle="tooltip" data-placement="bottom" title="@DateTime.Now.ToShortTimeString()">
+                    <i class="glyphicon glyphicon-time"></i>
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Logoff", "Account")" style="background-color: transparent;color: white; width: auto; height: auto;" data-toggle="tooltip" data-placement="bottom" title="Logoff">
+                    <i class="glyphicon glyphicon-log-out" style="color: white; background-color: transparent; width: auto; height: auto;"></i>
+                </a>
+            </li>
+        </ul>
+</nav>
+
+    <div id="wrapper">
+        @Html.Partial("Menu", "Home")
+        <div class="container body-content">
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    @RenderBody()
+                    <hr />
+                    <footer>
+                        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

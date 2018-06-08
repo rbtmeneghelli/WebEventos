@@ -1,0 +1,137 @@
+﻿@model Cl_Entities.tbUsuario
+
+@{
+    ViewBag.Title = "TrocaSenha";
+}
+
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Painel</a></li>
+    <li>FormularioTrocaSenha</li>
+</ul>
+
+<div class="well well-lg">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12">
+
+            @using (Html.BeginForm("TrocaSenha", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", target = "_top", onsubmit = "return frmvalidaCampos(this)", language = "JavaScript", name = "frmTrocaSenha" }))
+            {
+                <div class="panel panel-default">
+
+                    <div class="panel-heading" style="background-color: purple; color: white; font-weight: bolder; text-align: center;">
+                        Formulario de dados - TrocaSenha
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="form-group" style="float: left; padding-left: 2px;">
+                            @Html.HiddenFor(Model => Model.tbUsuario_Id)
+                            @Html.HiddenFor(Model => Model.idAction)
+                        </div>
+
+                        <div class="form-group" style="padding-top: 3px;">
+
+                            <div class="col-md-4">
+                                @Html.LabelFor(Model => Model.tbUsuario_Login, "Login")
+                                @Html.TextBoxFor(Model => Model.tbUsuario_Login, new { @class = "form-control", id = "txtLogin", @name = "txtLogin" })
+                            </div>
+
+                            <div class="col-md-4">
+                                @Html.LabelFor(Model => Model.tbUsuario_Senha, "Senha atual")
+                                @Html.TextBoxFor(Model => Model.tbUsuario_Senha, new { @class = "form-control", @name = "txtSenha", id = "txtSenha", disabled = "true" })
+                            </div>
+
+                            <div class="col-md-4">
+                                @Html.LabelFor(Model => Model.NovaSenha, "Nova senha")
+                                @Html.TextBoxFor(Model => Model.NovaSenha, new { @class = "form-control", @name = "txtNovaSenha", id = "txtNovaSenha" })
+                            </div>
+
+                        </div>
+
+                        <div style="float: right !important;">
+                            <a href="@Url.Action("Index","Home")" class="btn" style="background-color: dodgerblue; color: white;"> <i class="fa fa-arrow-left"> Voltar</i></a>
+                            <button type="button" class="btn limpar" value="Cancelar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-eraser"> Cancelar</i></button>
+                            <button type="submit" class="btn" value="Confirmar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-save"> Confirmar</i></button>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+    function frmvalidaCampos(objForm) {
+
+        var senha = '@ViewBag.Senha';
+
+        if (frmTrocaSenha.txtLogin.value == '') {
+            toastr.warning('Informe o seu login', 'Login');
+            frmTrocaSenha.txtLogin.focus();
+            return (false);
+        }
+
+        if (frmTrocaSenha.txtSenha.value == '') {
+            toastr.warning('Informe a senha atual', 'Senha atual');
+            frmTrocaSenha.txtSenha.focus();
+            return (false);
+        }
+
+        if (frmTrocaSenha.txtSenha.value.length > 30) {
+            toastr.warning('A nova senha deve ter no máximo 30 caracters', 'Senha atual');
+            frmTrocaSenha.txtSenha.focus();
+            return (false);
+        }
+
+        if (frmTrocaSenha.txtNovaSenha.value == '') {
+            toastr.warning('Informe a nova senha', 'Nova senha');
+            frmTrocaSenha.txtNovaSenha.focus();
+            return (false);
+        }
+
+        if (frmTrocaSenha.txtNovaSenha.value.length > 30) {
+            toastr.warning('A nova senha deve ter no máximo 30 caracters', 'Nova senha');
+            frmTrocaSenha.txtNovaSenha.focus();
+            return (false);
+        }
+
+        if (frmTrocaSenha.txtNovaSenha.value != senha)
+        {
+            toastr.error('As senhas não coicidem, favor corrigir!', 'Nova senha');
+            frmTrocaSenha.txtNovaSenha.focus();
+            return (false);
+        }
+
+        $('#txtSenha').val(senha);
+
+        return (true);
+    }
+</script>
+
+<script>
+    $(".limpar").click(function () {
+        $("#txtLogin").val('');
+        $("#txtSenha").val('');
+        $("#txtNovaSenha").val('');
+        $("#txtLogin").focus();
+    });
+</script> 

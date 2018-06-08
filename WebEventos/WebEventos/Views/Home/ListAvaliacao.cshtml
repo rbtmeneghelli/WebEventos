@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Cl_Entities.tbAvaliacao>
+
+@{
+    ViewBag.Title = "Avaliação";
+}
+
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Lista</a></li>
+    <li>Avaliação</li>
+</ul>
+
+<div class="well well-lg text-center">
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="background-color: dodgerblue; color: white; font-weight: bolder; text-align: center;">
+            Lista de dados
+            @Html.ActionLink(" ", "AvaliacaoLayout", new { idData = 0, idAction = 1 }, new { @class = "fa fa-plus", @style = "border: 0px; text-decoration:none; color: white;", @title = "Inserir" })
+            @Html.ActionLink(" ", "ExportToExcel", new { stOpcao = "Avaliacao" }, new { @class = "fa fa-file-excel-o", @style = "border: 0px; text-decoration:none; color: white;", @title = "Exportar para Excel" })
+            @Html.ActionLink(" ", "ExportToPdf", new { stOpcao = "Avaliacao" }, new { @class = "fa fa-file-pdf-o", @style = "border: 0px; text-decoration:none; color: white;", @title = "Exportar para Pdf" })
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-condensed" id="tbAvaliacao">
+                    <thead>
+                        <tr>
+                            <td>Data</td>
+                            <td>NomeArquivo</td>
+                            <td>Tipo</td>
+                            <td>Responsavel</td>
+                            <td>Ações</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count() > 0)
+                        {
+                            foreach (var item in Model.OrderBy(x => x.tbAvaliacao_Data))
+                            {
+                                <tr>
+                                    <td>@item.tbAvaliacao_Data</td>
+                                    <td>Nome</td>
+                                    <td>@item.tbAvaliacao_Tipo</td>
+                                    <td>@item.tbAvaliacao_Responsavel</td>
+                                    <td>
+                                        @Html.ActionLink(" ", "AvaliacaoLayout", new { idData = @item.tbAvaliacao_Id, idAction = 2 }, new { @class = "glyphicon glyphicon-edit text-success", @style = "border:0px;  text-decoration:none; ", @title = "Alterar" })
+                                        @Html.ActionLink(" ", "AvaliacaoLayout", new { idData = @item.tbAvaliacao_Id, idAction = 3 }, new { @class = "glyphicon glyphicon-trash text-danger", @style = "border:0px;  text-decoration:none; ", @title = "Excluir" })
+                                        @Html.ActionLink(" ", "AvaliacaoLayout", new { idData = @item.tbAvaliacao_Id, idAction = 4 }, new { @class = "glyphicon glyphicon-search text-info", @style = "border:0px;  text-decoration:none; ", @title = "Vizualizar" })
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script>
+        $(document).ready(function () {
+            $('#tbAvaliacao').DataTable();
+        });
+    </script>*@

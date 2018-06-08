@@ -1,0 +1,371 @@
+﻿@model  Cl_Entities.tbUsuario
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <link rel="stylesheet" type="text/css" href="~/Content/Login/login.css">
+    <script type="text/javascript" src="~/Scripts/passwordStrengthMeter.js"></script>
+</head>
+
+<body>
+
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-login">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="#" class="active" id="login-form-link">Login de acesso</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="#" id="register-form-link">Novo Usuario</a>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="panel-body">
+
+                        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", target = "_top", onsubmit = "return fnValidarCamposLogin(this)", language = "JavaScript", name = "frmLogin", id = "frmLogin", style = "display: block;" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(m => m.idAction, new { name = "txtIdAction", id = "txtIdAction", @Value = "1" })
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-user" style="color: dodgerblue !important;"></i></span>
+                                                @Html.TextBoxFor(m => m.tbUsuario_Login, null, new { autofocus = "", placeholder = "Digite o seu usuario", name = "txtUsuario", id = "txtUsuario", maxlength = "20", @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock" style="color: dodgerblue !important;"></i></span>
+                                                @Html.PasswordFor(m => m.tbUsuario_Senha, new { placeholder = "Digite a sua senha", name = "txtSenha", id = "txtSenha", maxlength = "20", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Acessar" style="color: white !important;">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="text-center">
+                                                    <a href="#" class=" forgot-password senhaforget">
+                                                        <span class="glyphicon glyphicon-lock" style="color: white; background-color: transparent; width: auto; height: auto;"></span> Esqueceu a senha?
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+
+                        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", target = "_top", onsubmit = "return fnValidarCamposNovo(this)", language = "JavaScript", name = "frmloginNovo", id = "frmloginNovo", style = "display: none;" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(m => m.idAction, new { name = "txtIdAction", id = "txtIdAction", @Value = "2" })
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" style="color: dodgerblue !important;"></i></span>
+                                        @Html.TextBoxFor(m => m.tbUsuario_Email, new { autofocus = "", placeholder = "Digite o seu email", name = "txtEmail", id = "txtEmail", maxlength = "60", @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user" style="color: dodgerblue !important;"></i></span>
+                                        @Html.TextBoxFor(m => m.tbUsuario_Login, new { placeholder = "Digite o seu usuario", name = "txtUsuario1", id = "txtUsuario1", maxlength = "20", @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-6 col-sm-offset-3">
+                                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Registrar" style="color: white !important;">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <center>
+        <span class="fonRodape"> @System.DateTime.Now.Year.ToString() - Desenvolvido por Roberto Meneghelli Grigoragi</span>
+    </center>
+
+</body>
+</html>
+
+<div class="modal" id="modalForgetsenha"></div>
+
+<script>
+    $(function () {
+
+        $('#login-form-link').click(function (e) {
+            $("#frmLogin").delay(100).fadeIn(100);
+            $("#frmloginNovo").fadeOut(100);
+            $('#register-form-link').removeClass('active');
+            $(this).addClass('active');
+            $('#txtIdAction').val('1');
+            e.preventDefault();
+        });
+
+        $('#register-form-link').click(function (e) {
+            $("#frmloginNovo").delay(100).fadeIn(100);
+            $("#frmLogin").fadeOut(100);
+            $('#login-form-link').removeClass('active');
+            $(this).addClass('active');
+            $('#txtIdAction').val('2');
+            e.preventDefault();
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+
+    function fnValidarCamposLogin(objForm) {
+
+        toastr.options = {
+                   "closeButton": true,
+                   "debug": false,
+                   "newestOnTop": true,
+                   "progressBar": true,
+                   "positionClass": "toast-bottom-right",
+                   "preventDuplicates": false,
+                   "onclick": null,
+                   "showDuration": "300",
+                   "hideDuration": "1000",
+                   "timeOut": "5000",
+                   "extendedTimeOut": "1000",
+                   "showEasing": "swing",
+                   "hideEasing": "linear",
+                   "showMethod": "fadeIn",
+                   "hideMethod": "fadeOut"
+        }
+
+        if (frmLogin.txtUsuario.value == '') {
+            toastr.warning("Informe seu usuário de acesso", " Usuário");
+            frmLogin.txtUsuario.focus();
+            return (false);
+        }
+
+        if (frmLogin.txtSenha.value == '') {
+            toastr.warning("Informe sua senha de acesso", " Usuário");
+            frmLogin.txtSenha.focus();
+            return (false);
+        }
+
+        return (true);
+    }
+
+    function fnValidarCamposNovo(objForm) {
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        if (frmloginNovo.txtEmail.value == '') {
+            toastr.warning("Informe seu email de acesso", " Email");
+            frmloginNovo.txtEmail.focus();
+            return (false);
+        }
+
+        if (frmloginNovo.txtUsuario1.value == '') {
+            toastr.warning("Informe seu usuário de acesso", " Usuário");
+            frmloginNovo.txtUsuario1.focus();
+            return (false);
+        }
+
+        if (frmloginNovo.txtSenha1.value == '') {
+            toastr.warning("Informe sua senha de acesso", " Senha");
+            frmloginNovo.txtSenha1.focus();
+            return (false);
+        }
+
+        if (frmloginNovo.txtNovaSenha.value == '') {
+            toastr.warning("Informe sua senha de confirmação de acesso", "Confirmação senha");
+            frmloginNovo.txtNovaSenha.focus();
+            return (false);
+        }
+
+        if (frmloginNovo.txtSenha1.value != frmloginNovo.txtNovaSenha.value) {
+            toastr.warning("A sua senha e a de confirmação de senha não coincidem, verifique!", " Senhas");
+            frmloginNovo.txtSenha1.focus();
+            return (false);
+        }
+        return (true);
+    }
+
+    $(document).ready(function () {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        var msgType = '@ViewBag.Msgtype';
+
+        if (msgType != '') {
+            toastr.options.onHidden = function () { window.location.href = '@Url.Action("Login","Account")'; };
+            if (msgType == 0)
+                toastr.error("Erro para executar está ação,tente novamente", "WebEventos");
+            else if (msgType == 1)
+                toastr.success("Registro incluido com sucesso", "WebEventos");
+            else if (msgType == 2)
+                toastr.success("Registro atualizado com sucesso", "WebEventos");
+            else if (msgType == 3)
+                toastr.success("Registro excluido com sucesso", "WebEventos");
+            else if (msgType == 4)
+                toastr.success("Usuario criado com sucesso", "WebEventos");
+            else if (msgType == 5)
+                toastr.success("Email enviado com sucesso", "WebEventos");
+            else if (msgType == 10)
+                toastr.success("Backup criado com sucesso", "WebEventos");
+        }
+
+        var someStringValue = '@ViewBag.MessageError';
+
+        if (someStringValue != '') {
+            frmLogin.txtUsuario.value = '';
+            toastr.error(someStringValue, " Usuário");
+        }
+
+        var result = "";
+        $('#txtSenha1').keyup(function () {
+            result = (passwordStrength($('#txtSenha1').val(), ""))
+            if (result == "Muito Curta") {
+                $('#txtSenha1').attr({ 'style': 'color:Red;' });
+            }
+            if (result == "Ruim") {
+                $('#txtSenha1').attr({ 'style': 'color:Yellow;' });
+            }
+            if (result == "Boa") {
+                $('#txtSenha1').attr({ 'style': 'color:Green;' });
+            }
+            if (result == "Forte") {
+                $('#txtSenha1').attr({ 'style': 'color:Blue;' });
+            }
+        });
+
+        var result2 = "";
+        $('#txtNovaSenha').keyup(function () {
+            result2 = (passwordStrength($('#txtNovaSenha').val(), ""))
+            if (result2 == "Muito Curta") {
+                $('#txtNovaSenha').attr({ 'style': 'color:Red;' });
+            }
+            if (result2 == "Ruim") {
+                $('#txtNovaSenha').attr({ 'style': 'color:Yellow;' });
+            }
+            if (result2 == "Boa") {
+                $('#txtNovaSenha').attr({ 'style': 'color:Green;' });
+            }
+            if (result2 == "Forte") {
+                $('#txtNovaSenha').attr({ 'style': 'color:Blue;' });
+            }
+        });
+
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+
+        function validateEmail(sEmail) {
+
+            var atpos = sEmail.indexOf("@@");
+            var dotpos = sEmail.lastIndexOf(".");
+            if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= sEmail.length) {
+                return false;
+            }
+            return true;
+        }
+
+        $('#txtEmail').change(function() {
+            var sEmail = $('#txtEmail').val();
+
+            if ($.trim(sEmail).length == 0) {
+                toastr.error('Informe o seu endereço de email','Notes');
+                e.preventDefault();
+            }
+
+            if (validateEmail(sEmail)) {
+                toastr.success('Email validado com sucesso','Notes');
+            }
+
+            else {
+                toastr.error('Email invalido, faça a correção do seu email', 'Notes');
+                $('#txtEmail').val() = '';
+                $('#txtEmail').focus();
+                e.preventDefault();
+            }
+         });
+    });
+</script>
+
+<script>
+    $(".senhaforget").click(function () {
+        $("#modalForgetsenha").load("/Account/_Esqueceusenha", function () {
+            $("#modalForgetsenha").modal({ backdrop: "static" });
+
+        })
+    });
+</script>

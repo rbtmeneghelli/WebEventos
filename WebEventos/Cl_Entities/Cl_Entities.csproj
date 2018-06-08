@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D5BAEBDF-D88A-4BB5-AF14-BB0C8CAD957C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cl_Entities</RootNamespace>
+    <AssemblyName>Cl_Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ModelWebEventos.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelWebEventos.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelWebEventos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelWebEventos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelWebEventos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelWebEventos.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="tbAcesso.cs">
+      <DependentUpon>ModelWebEventos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbAcessoComplemento.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tbArea.cs">
+      <DependentUpon>ModelWebEventos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbAreaComplemento.cs" />
+    <Compile Include="tbArquivo.cs">
+      <DependentUpon>ModelWebEventos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbArquivoComplemento.cs" />
+    <Compile Include="tbAvaliacao.cs">
+      <DependentUpon>ModelWebEventos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbAvaliacaoComplemento.cs" />
+    <Compile Include="tbBackup.cs" />
+    <Compile Include="tbEvento.cs">
+      <DependentUpon>ModelWebEventos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbEventoComplemento.cs" />
+    <Compile Include="tbInstituicao.cs">
+      <DependentUpon>ModelWebEventos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbInstituicaoComplemento.cs" />
+    <Compile Include="tbPalestra.cs">
+      <DependentUpon>ModelWebEventos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbPalestraComplemento.cs" />
+    <Compile Include="tbUsuario.cs">
+      <DependentUpon>ModelWebEventos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbUsuarioComplemento.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="ModelWebEventos.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelWebEventos.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelWebEventos.edmx.diagram">
+      <DependentUpon>ModelWebEventos.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelWebEventos.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelWebEventos.edmx</DependentUpon>
+      <LastGenOutput>ModelWebEventos.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelWebEventos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelWebEventos.edmx</DependentUpon>
+      <LastGenOutput>ModelWebEventos.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cl_Tools\Cl_Tools.csproj">
+      <Project>{a11dc549-e04f-498f-b636-1065e88e6457}</Project>
+      <Name>Cl_Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

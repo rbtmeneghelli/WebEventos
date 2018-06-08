@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Cl_Entities.tbEvento>
+
+@{
+    ViewBag.Title = "Evento";
+}
+
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Lista</a></li>
+    <li>Evento</li>
+</ul>
+
+<div class="well well-lg text-center">
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="background-color: dodgerblue; color: white; font-weight: bolder; text-align: center;">
+            Lista de dados
+            @Html.ActionLink(" ", "EventoLayout", new { idData = 0, idAction = 1 }, new { @class = "fa fa-plus", @style = "border: 0px; text-decoration:none; color: white;", @title = "Inserir" })
+            @Html.ActionLink(" ", "ExportToExcel", new { stOpcao = "Evento" }, new { @class = "fa fa-file-excel-o", @style = "border: 0px; text-decoration:none; color: white;", @title = "Exportar para Excel" })
+            @Html.ActionLink(" ", "ExportToPdf", new { stOpcao = "Evento" }, new { @class = "fa fa-file-pdf-o", @style = "border: 0px; text-decoration:none; color: white;", @title = "Exportar para Pdf" })
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-condensed" id="tbEvento">
+                    <thead>
+                        <tr>
+                            <td>Data</td>
+                            <td>Titulo</td>
+                            <td>Ações</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count() > 0)
+                        {
+                            foreach (var item in Model.OrderBy(x => x.tbEvento_DataEvento))
+                            {
+                                <tr>
+                                    <td>@item.tbEvento_DataEvento</td>
+                                    <td>@item.tbEvento_Titulo</td>
+                                    <td>
+                                        @Html.ActionLink(" ", "EventoLayout", new { idData = @item.tbEvento_Id, idAction = 2 }, new { @class = "glyphicon glyphicon-edit text-success", @style = "border:0px;  text-decoration:none; ", @title = "Alterar" })
+                                        @Html.ActionLink(" ", "EventoLayout", new { idData = @item.tbEvento_Id, idAction = 3 }, new { @class = "glyphicon glyphicon-trash text-danger", @style = "border:0px;  text-decoration:none; ", @title = "Excluir" })
+                                        @Html.ActionLink(" ", "EventoLayout", new { idData = @item.tbEvento_Id, idAction = 4 }, new { @class = "glyphicon glyphicon-search text-info", @style = "border:0px;  text-decoration:none; ", @title = "Vizualizar" })
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script>
+        $(document).ready(function () {
+            $('#tbEvento').DataTable();
+        });
+    </script>*@

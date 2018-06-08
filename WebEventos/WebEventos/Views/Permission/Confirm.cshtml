@@ -1,0 +1,24 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Confirmação";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/confirm.css">
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="form">
+            <p class="ctext">
+                Sua solicitação foi efetuada com sucesso, por favor verifique seu email. <br><br>
+                Qualquer duvida entre em contato com o administrador do sistema.<br><br>
+                <a href="@Url.Action("Login","Account")" class="alink">Voltar</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

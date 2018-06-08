@@ -1,0 +1,112 @@
+﻿@model Cl_Entities.tbAcesso
+
+@{
+    ViewBag.Title = "Acesso";
+}
+
+<ul class="breadcrumb">
+    <li><a href="#">Account</a></li>
+    <li><a href="#">Painel</a></li>
+    <li>Formulario Acesso</li>
+</ul>
+
+<div class="well well-lg">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12">
+
+            @using (Html.BeginForm("Acesso", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", target = "_top", onsubmit = "return frmvalidaCampos(this)", language = "JavaScript", name = "frmAcesso" }))
+            {
+                <div class="panel panel-default">
+
+                    <div class="panel-heading" style="background-color: dodgerblue; color: white; font-weight: bolder; text-align: center;">
+                        Formulario Acesso
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="form-group" style="float: left; padding-left: 2px;">
+                            @Html.HiddenFor(Model => Model.tbAcesso_Id)
+                            @Html.HiddenFor(Model => Model.idAction)
+                        </div>
+
+                        <div class="form-group" style="padding-top: 3px;">
+                            <div class="col-md-6">
+                                @Html.LabelFor(Model => Model.tbAcesso_Descrição, "Descrição")
+                                @Html.TextBoxFor(Model => Model.tbAcesso_Descrição, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtDesc", id = "txtDesc" })
+                            </div>
+
+                            <div class="col-md-6">
+                                @Html.LabelFor(Model => Model.tbAcesso_Nivel, "Nivel")
+                                @Html.DropDownListFor(Model => Model.tbAcesso_Nivel, (SelectList)ViewBag.ListaNivelAcesso, new { @class = "form-control dropdown", @name = "ddNivel", id = "ddNivel" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="padding-top: 3px;">
+                            <div class="col-md-12">
+                                @Html.LabelFor(Model => Model.Ativo, "Ativo?")
+                                @Html.DropDownListFor(Model => Model.Ativo, (SelectList)ViewBag.ListaAtivo, new { @class = "form-control dropdown", @name = "ddAtv", id = "ddAtv" })
+                            </div>
+                        </div>
+
+                        <div style="float: right !important;">
+                            <a href="@Url.Action("ListAcesso","Account")" class="btn" style="background-color: dodgerblue; color: white;"> <i class="fa fa-arrow-left"> Voltar</i></a>
+                            <button type="button" class="btn limpar" value="Cancelar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-eraser"> Cancelar</i></button>
+                            <button type="submit" class="btn" value="Confirmar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-save"> Confirmar</i></button>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        function frmvalidaCampos(objForm) {
+
+            if (frmAcesso.txtDesc.value == '') {
+                toastr.warning('Campo em branco, favor preencher', 'Descrição');
+                frmAcesso.txtDesc.focus();
+                return (false);
+            }
+
+            if (frmAcesso.ddNivel.value == '') {
+                toastr.warning('Campo em branco, favor preencher', 'Nivel');
+                frmAcesso.ddNivel.focus();
+                return (false);
+            }
+
+            if (frmAcesso.ddAtv.value == '') {
+                toastr.error('Campo em branco, favor preencher', 'Ativo');
+                frmAcesso.ddAtv.focus();
+                return (false);
+            }
+
+            return (true);
+        }
+</script>
+
+<script>
+    $(".limpar").click(function () {
+        $("#txtDesc").val('');
+        $("#txtDesc").focus();
+    });
+</script> 

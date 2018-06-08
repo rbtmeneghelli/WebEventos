@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+
+<!-- Bootstrap core CSS -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="~/Content/Menu/sidebar.css" rel="stylesheet">
+
+<div id="sidebar-wrapper">    
+    <ul class="sidebar-nav">
+        <li>
+            <br>         
+                @Html.ActionLink("Pagina Inicial", "Index", "Home")
+                @Html.ActionLink("Menu Acesso", "ListAcesso", "Account")
+                @Html.ActionLink("Menu Area", "ListArea", "Home")
+                @Html.ActionLink("Menu Eventos", "ListEvento", "Home")
+                @Html.ActionLink("Menu Instituição", "ListInstituicao", "Home")
+                @Html.ActionLink("Menu Palestra", "ListPalestra", "Home")
+                @Html.ActionLink("Menu Usuario", "ListUsuario", "Account")
+                @Html.ActionLink("Menu Backup", "Backup", "Account")
+        </li>
+    </ul>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="Scripts/buttons.bootstrap.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Cl_Entities.tbInstituicao>
+
+@{
+    ViewBag.Title = "Instituição";
+}
+
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Lista</a></li>
+    <li>Instituição</li>
+</ul>
+
+<div class="well well-lg text-center">
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="background-color: dodgerblue; color: white; font-weight: bolder; text-align: center;">
+            Lista de dados
+            @Html.ActionLink(" ", "InstituicaoLayout", new { idData = 0, idAction = 1 }, new { @class = "fa fa-plus", @style = "border: 0px; text-decoration:none; color: white;", @title = "Inserir" })
+            @Html.ActionLink(" ", "ExportToExcel", new { stOpcao = "Instituicao" }, new { @class = "fa fa-file-excel-o", @style = "border: 0px; text-decoration:none; color: white;", @title = "Exportar para Excel" })
+            @Html.ActionLink(" ", "ExportToPdf", new { stOpcao = "Instituicao" }, new { @class = "fa fa-file-pdf-o", @style = "border: 0px; text-decoration:none; color: white;", @title = "Exportar para Pdf" })
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-condensed" id="tbInstituicao">
+                    <thead>
+                        <tr>
+                            <td>Cnpj</td>
+                            <td>Descrição</td>
+                            <td>Telefone</td>
+                            <td>Cep</td>
+                            <td>Cidade</td>
+                            <td>Bairro</td>
+                            <td>Estado</td>
+                            <td>Ações</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count() > 0)
+                        {
+                            foreach (var item in Model.OrderBy(x => x.tbInstituicao_Cnpj))
+                            {
+                                <tr>
+                                    <td>@item.tbInstituicao_Cnpj</td>
+                                    <td>@item.tbInstituicao_Descricao</td>
+                                    <td>@item.tbInstituicao_Telefone</td>
+                                    <td>@item.tbInstituicao_Cep</td>
+                                    <td>@item.tbInstituicao_Cidade</td>
+                                    <td>@item.tbInstituicao_Bairro</td>
+                                    <td>@item.tbInstituicao_Estado</td>
+                                    <td>
+                                        @Html.ActionLink(" ", "InstituicaoLayout", new { idData = @item.tbInstituicao_Id, idAction = 2 }, new { @class = "glyphicon glyphicon-edit text-success", @style = "border:0px;  text-decoration:none; ", @title = "Alterar" })
+                                        @Html.ActionLink(" ", "InstituicaoLayout", new { idData = @item.tbInstituicao_Id, idAction = 3 }, new { @class = "glyphicon glyphicon-trash text-danger", @style = "border:0px;  text-decoration:none; ", @title = "Excluir" })
+                                        @Html.ActionLink(" ", "InstituicaoLayout", new { idData = @item.tbInstituicao_Id, idAction = 4 }, new { @class = "glyphicon glyphicon-search text-info", @style = "border:0px;  text-decoration:none; ", @title = "Vizualizar" })
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script>
+        $(document).ready(function () {
+            $('#tbInstituicao').DataTable();
+        });
+    </script>*@

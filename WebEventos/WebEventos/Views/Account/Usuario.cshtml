@@ -1,0 +1,133 @@
+﻿@model Cl_Entities.tbUsuario
+
+@{
+    ViewBag.Title = "Usuario";
+}
+
+<ul class="breadcrumb">
+    <li><a href="#">Account</a></li>
+    <li><a href="#">Painel</a></li>
+    <li>Formulario Usuario</li>
+</ul>
+
+<div class="well well-lg">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12">
+
+            @using (Html.BeginForm("Usuario", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", target = "_top", onsubmit = "return frmvalidaCampos(this)", language = "JavaScript", name = "frmUsuario" }))
+            {
+                <div class="panel panel-default">
+
+                    <div class="panel-heading" style="background-color: dodgerblue; color: white; font-weight: bolder; text-align: center;">
+                        Formulario Usuario
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="form-group" style="float: left; padding-left: 2px;">
+                            @Html.HiddenFor(Model => Model.tbUsuario_Id)
+                            @Html.HiddenFor(Model => Model.idAction, new { @name = "txtAction", id = "txtAction" })
+                        </div>
+
+                        <div class="form-group" style="padding-top: 3px;">
+                            <div class="col-md-3">
+                                @Html.LabelFor(Model => Model.tbUsuario_Login, "Login")
+                                @Html.TextBoxFor(Model => Model.tbUsuario_Login, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtLogin", id = "txtLogin" })
+                            </div>
+
+                            <div class="col-md-3">
+                                @Html.LabelFor(Model => Model.tbUsuario_Senha, "Senha")
+                                @Html.PasswordFor(Model => Model.tbUsuario_Senha, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "pswSenha", id = "pswSenha" })
+                            </div>
+
+                            <div class="col-md-4">
+                                @Html.LabelFor(Model => Model.tbUsuario_Email, "Email")
+                                @Html.TextBoxFor(Model => Model.tbUsuario_Email, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtEmail", id = "txtEmail" })
+                            </div>
+
+                            <div class="col-md-2">
+                                @Html.LabelFor(Model => Model.Ativo, "Ativo")
+                                @Html.DropDownListFor(Model => Model.Ativo, (SelectList)ViewBag.ListaAtivo, new { @class = "form-control dropdown", @name = "ddAtv", id = "ddAtv" })
+                            </div>
+                        </div>
+
+                        <div style="float: right !important;">
+                            <a href="@Url.Action("ListUsuario","Account")" class="btn" style="background-color: dodgerblue; color: white;"> <i class="fa fa-arrow-left"> Voltar</i></a>
+                            <button type="button" class="btn limpar" value="Cancelar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-eraser"> Cancelar</i></button>
+                            <button type="submit" class="btn" value="Confirmar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-save"> Confirmar</i></button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        function frmvalidaCampos(objForm) {
+            
+            if (frmUsuario.txtLogin.value == '') {
+                toastr.warning('Campo em branco, favor preencher', 'Login');
+                frmUsuario.txtLogin.focus();
+                return (false);
+            }
+
+            if (frmUsuario.txtAction.value == '2') {
+                if (frmUsuario.txtSenha.value == '') {
+                    toastr.warning('Campo em branco, favor preencher', 'Senha');
+                    frmUsuario.txtSenha.focus();
+                    return (false);
+                }
+            }
+
+            else {
+                if (frmUsuario.pswSenha.value == '') {
+                    toastr.warning('Campo em branco, favor preencher', 'Senha');
+                    frmUsuario.pswSenha.focus();
+                    return (false);
+                }
+            }
+
+            if (frmUsuario.txtEmail.value == '') {
+                toastr.error('Campo em branco, favor preencher', 'Email');
+                frmUsuario.txtEmail.focus();
+                return (false);
+            }
+
+            if (frmUsuario.ddAtv.value == '') {
+                toastr.error('Campo em branco, favor preencher', 'Diretorio');
+                frmUsuario.ddAtv.focus();
+                return (false);
+            }
+
+            return (true);
+        }
+</script>
+
+<script>
+    $(".limpar").click(function () {
+        $("#txtLogin").val('');
+        $("#txtSenha").val('');
+        $("#pswSenha").val('');
+        $("#txtEmail").val('');
+        $("#txtLogin").focus();
+    });
+</script> 

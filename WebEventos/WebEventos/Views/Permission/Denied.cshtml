@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "AcessoNegado";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/denied.css">
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="form">
+            <p class="ctext">
+                Caro Usuario <br> <br>
+                Seu acesso a está pagina foi negado, pois este conteudo é restrito.<br> <br>
+                Em caso de duvida entre em contato com o administrador. <br> <br>
+                <a href="@Url.Action("Login","Account")" class="alink">Voltar</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

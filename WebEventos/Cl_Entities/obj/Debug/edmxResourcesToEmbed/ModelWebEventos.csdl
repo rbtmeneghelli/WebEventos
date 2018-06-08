@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbWebEventoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbAcesso">
+    <Key>
+      <PropertyRef Name="tbAcesso_Id" />
+    </Key>
+    <Property Name="tbAcesso_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tbAcesso_Descrição" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tbAcesso_Nivel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tbAcesso_Ativo" Type="Boolean" />
+    <Property Name="tbAcesso_UpdateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbUsuario" Relationship="Self.FK__tbUsuario__tbAce__145C0A3F" FromRole="tbAcesso" ToRole="tbUsuario" />
+  </EntityType>
+  <EntityType Name="tbArea">
+    <Key>
+      <PropertyRef Name="tbArea_Id" />
+    </Key>
+    <Property Name="tbArea_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tbArea_Descricao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tbArea_Ativo" Type="Boolean" />
+    <Property Name="tbArea_UpdateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbEvento" Relationship="Self.FK__tbEvento__tbUsua__182C9B23" FromRole="tbArea" ToRole="tbEvento" />
+    <NavigationProperty Name="tbInstituicao" Relationship="Self.FK__tbInstitu__tbAre__2C3393D0" FromRole="tbArea" ToRole="tbInstituicao" />
+    <NavigationProperty Name="tbPalestra" Relationship="Self.FK__tbPalestr__tbAre__286302EC" FromRole="tbArea" ToRole="tbPalestra" />
+  </EntityType>
+  <EntityType Name="tbArquivo">
+    <Key>
+      <PropertyRef Name="tbArquivo_Id" />
+    </Key>
+    <Property Name="tbArquivo_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tbArquivo_Titulo" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="tbArquivo_Descricao" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="tbArquivo_DataEntrega" Type="DateTime" Precision="3" />
+    <Property Name="tbArquivo_Documento" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+    <Property Name="tbArquivo_UpdateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbEvento" Relationship="Self.FK__tbArquivo__tbEve__25869641" FromRole="tbArquivo" ToRole="tbEvento" />
+    <NavigationProperty Name="tbUsuario" Relationship="Self.FK__tbArquivo__tbUsu__24927208" FromRole="tbArquivo" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbAvaliacao" Relationship="Self.FK__tbAvaliac__tbArq__37A5467C" FromRole="tbArquivo" ToRole="tbAvaliacao" />
+  </EntityType>
+  <EntityType Name="tbAvaliacao">
+    <Key>
+      <PropertyRef Name="tbAvaliacao_Id" />
+    </Key>
+    <Property Name="tbAvaliacao_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tbAvaliacao_Responsavel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tbAvaliacao_Data" Type="DateTime" Precision="3" />
+    <Property Name="tbAvaliacao_Tipo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="tbAvaliacao_Origem" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="tbAvaliacao_Objetivo" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="tbAvaliacao_Clareza" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="tbAvaliacao_Dominio" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="tbAvaliacao_Qualidade" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="tbAvaliacao_Apresentacao" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="tbAvaliacao_UpdateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbArquivo" Relationship="Self.FK__tbAvaliac__tbArq__37A5467C" FromRole="tbAvaliacao" ToRole="tbArquivo" />
+  </EntityType>
+  <EntityType Name="tbEvento">
+    <Key>
+      <PropertyRef Name="tbEvento_Id" />
+    </Key>
+    <Property Name="tbEvento_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tbEvento_Titulo" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="tbEvento_DataEvento" Type="DateTime" Precision="3" />
+    <Property Name="tbEvento_UpdateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbArea" Relationship="Self.FK__tbEvento__tbUsua__182C9B23" FromRole="tbEvento" ToRole="tbArea" />
+    <NavigationProperty Name="tbArquivo" Relationship="Self.FK__tbArquivo__tbEve__25869641" FromRole="tbEvento" ToRole="tbArquivo" />
+    <NavigationProperty Name="tbUsuario" Relationship="Self.FK__tbEvento__tbUsua__1920BF5C" FromRole="tbEvento" ToRole="tbUsuario" />
+  </EntityType>
+  <EntityType Name="tbInstituicao">
+    <Key>
+      <PropertyRef Name="tbInstituicao_Id" />
+    </Key>
+    <Property Name="tbInstituicao_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tbInstituicao_Cnpj" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tbInstituicao_Descricao" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="tbInstituicao_Cep" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="tbInstituicao_Bairro" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="tbInstituicao_Cidade" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="tbInstituicao_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="tbInstituicao_Telefone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="tbInstituicao_UpdateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbArea" Relationship="Self.FK__tbInstitu__tbAre__2C3393D0" FromRole="tbInstituicao" ToRole="tbArea" />
+  </EntityType>
+  <EntityType Name="tbPalestra">
+    <Key>
+      <PropertyRef Name="tbPalestra_Id" />
+    </Key>
+    <Property Name="tbPalestra_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tbPalestra_Titulo" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="tbPalestra_DataEvento" Type="DateTime" Precision="3" />
+    <Property Name="tbPalestra_UpdateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbArea" Relationship="Self.FK__tbPalestr__tbAre__286302EC" FromRole="tbPalestra" ToRole="tbArea" />
+    <NavigationProperty Name="tbUsuario" Relationship="Self.FK__tbPalestr__tbUsu__29572725" FromRole="tbPalestra" ToRole="tbUsuario" />
+  </EntityType>
+  <EntityType Name="tbUsuario">
+    <Key>
+      <PropertyRef Name="tbUsuario_Id" />
+    </Key>
+    <Property Name="tbUsuario_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tbUsuario_Login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tbUsuario_Senha" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tbUsuario_Ativo" Type="Boolean" />
+    <Property Name="tbUsuario_UpdateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbAcesso" Relationship="Self.FK__tbUsuario__tbAce__145C0A3F" FromRole="tbUsuario" ToRole="tbAcesso" />
+    <NavigationProperty Name="tbArquivo" Relationship="Self.FK__tbArquivo__tbUsu__24927208" FromRole="tbUsuario" ToRole="tbArquivo" />
+    <NavigationProperty Name="tbEvento" Relationship="Self.FK__tbEvento__tbUsua__1920BF5C" FromRole="tbUsuario" ToRole="tbEvento" />
+    <NavigationProperty Name="tbPalestra" Relationship="Self.FK__tbPalestr__tbUsu__29572725" FromRole="tbUsuario" ToRole="tbPalestra" />
+    <Property Name="tbUsuario_Email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK__tbUsuario__tbAce__145C0A3F">
+    <End Role="tbAcesso" Type="Self.tbAcesso" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="*" />
+  </Association>
+  <Association Name="FK__tbEvento__tbUsua__182C9B23">
+    <End Role="tbArea" Type="Self.tbArea" Multiplicity="0..1" />
+    <End Role="tbEvento" Type="Self.tbEvento" Multiplicity="*" />
+  </Association>
+  <Association Name="FK__tbInstitu__tbAre__2C3393D0">
+    <End Role="tbArea" Type="Self.tbArea" Multiplicity="0..1" />
+    <End Role="tbInstituicao" Type="Self.tbInstituicao" Multiplicity="*" />
+  </Association>
+  <Association Name="FK__tbPalestr__tbAre__286302EC">
+    <End Role="tbArea" Type="Self.tbArea" Multiplicity="0..1" />
+    <End Role="tbPalestra" Type="Self.tbPalestra" Multiplicity="*" />
+  </Association>
+  <Association Name="FK__tbArquivo__tbEve__25869641">
+    <End Role="tbEvento" Type="Self.tbEvento" Multiplicity="0..1" />
+    <End Role="tbArquivo" Type="Self.tbArquivo" Multiplicity="*" />
+  </Association>
+  <Association Name="FK__tbArquivo__tbUsu__24927208">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbArquivo" Type="Self.tbArquivo" Multiplicity="*" />
+  </Association>
+  <Association Name="FK__tbAvaliac__tbArq__37A5467C">
+    <End Role="tbArquivo" Type="Self.tbArquivo" Multiplicity="0..1" />
+    <End Role="tbAvaliacao" Type="Self.tbAvaliacao" Multiplicity="*" />
+  </Association>
+  <Association Name="FK__tbEvento__tbUsua__1920BF5C">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbEvento" Type="Self.tbEvento" Multiplicity="*" />
+  </Association>
+  <Association Name="FK__tbPalestr__tbUsu__29572725">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbPalestra" Type="Self.tbPalestra" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="dbWebEventoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbAcesso" EntityType="Self.tbAcesso" />
+    <EntitySet Name="tbArea" EntityType="Self.tbArea" />
+    <EntitySet Name="tbArquivo" EntityType="Self.tbArquivo" />
+    <EntitySet Name="tbAvaliacao" EntityType="Self.tbAvaliacao" />
+    <EntitySet Name="tbEvento" EntityType="Self.tbEvento" />
+    <EntitySet Name="tbInstituicao" EntityType="Self.tbInstituicao" />
+    <EntitySet Name="tbPalestra" EntityType="Self.tbPalestra" />
+    <EntitySet Name="tbUsuario" EntityType="Self.tbUsuario" />
+    <AssociationSet Name="FK__tbUsuario__tbAce__145C0A3F" Association="Self.FK__tbUsuario__tbAce__145C0A3F">
+      <End Role="tbAcesso" EntitySet="tbAcesso" />
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbEvento__tbUsua__182C9B23" Association="Self.FK__tbEvento__tbUsua__182C9B23">
+      <End Role="tbArea" EntitySet="tbArea" />
+      <End Role="tbEvento" EntitySet="tbEvento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbInstitu__tbAre__2C3393D0" Association="Self.FK__tbInstitu__tbAre__2C3393D0">
+      <End Role="tbArea" EntitySet="tbArea" />
+      <End Role="tbInstituicao" EntitySet="tbInstituicao" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbPalestr__tbAre__286302EC" Association="Self.FK__tbPalestr__tbAre__286302EC">
+      <End Role="tbArea" EntitySet="tbArea" />
+      <End Role="tbPalestra" EntitySet="tbPalestra" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbArquivo__tbEve__25869641" Association="Self.FK__tbArquivo__tbEve__25869641">
+      <End Role="tbEvento" EntitySet="tbEvento" />
+      <End Role="tbArquivo" EntitySet="tbArquivo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbArquivo__tbUsu__24927208" Association="Self.FK__tbArquivo__tbUsu__24927208">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbArquivo" EntitySet="tbArquivo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbAvaliac__tbArq__37A5467C" Association="Self.FK__tbAvaliac__tbArq__37A5467C">
+      <End Role="tbArquivo" EntitySet="tbArquivo" />
+      <End Role="tbAvaliacao" EntitySet="tbAvaliacao" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbEvento__tbUsua__1920BF5C" Association="Self.FK__tbEvento__tbUsua__1920BF5C">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEvento" EntitySet="tbEvento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbPalestr__tbUsu__29572725" Association="Self.FK__tbPalestr__tbUsu__29572725">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbPalestra" EntitySet="tbPalestra" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

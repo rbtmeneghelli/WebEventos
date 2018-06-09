@@ -52,6 +52,12 @@
             </li>
 
             <li>
+                <a href="#" class="logmodal" style="background-color: transparent;color: white; width: auto; height: auto;" data-toggle="tooltip" data-placement="bottom" title="Trocar Senha">
+                    <i class="glyphicon glyphicon-lock"></i>
+                </a>
+            </li>
+
+            <li>
                 <a href="@Url.Action("Logoff", "Account")" style="background-color: transparent;color: white; width: auto; height: auto;" data-toggle="tooltip" data-placement="bottom" title="Logoff">
                     <i class="glyphicon glyphicon-log-out" style="color: white; background-color: transparent; width: auto; height: auto;"></i>
                 </a>
@@ -73,6 +79,16 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="logModal"></div>
+
+    <script>
+    $(".logmodal").click(function () {
+        $("#logModal").load("/Account/Trocasenha", function () {
+            $("#logModal").modal({ backdrop: "static" });
+        })
+    });
+    </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

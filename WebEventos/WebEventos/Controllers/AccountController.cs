@@ -253,7 +253,7 @@ namespace WebEventos.Controllers
                 else if (userId > 0 && blUserAuth == false)
                     return RedirectToAction("Denied", "Account");
 
-                return View(listaAcesso);
+                return View(usuario);
             }
 
             catch (Exception ex)

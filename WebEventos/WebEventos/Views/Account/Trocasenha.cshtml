@@ -1,65 +1,71 @@
 ﻿@model Cl_Entities.tbUsuario
 
 @{
-    ViewBag.Title = "TrocaSenha";
+    Layout = null;
 }
 
-<ul class="breadcrumb">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Painel</a></li>
-    <li>FormularioTrocaSenha</li>
-</ul>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
+</head>
 
-<div class="well well-lg">
-    <div class="row">
-        <div class="col-md-12 col-lg-12 col-xs-12">
+<body>
 
-            @using (Html.BeginForm("TrocaSenha", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", target = "_top", onsubmit = "return frmvalidaCampos(this)", language = "JavaScript", name = "frmTrocaSenha" }))
-            {
-                <div class="panel panel-default">
+    @using (Html.BeginForm("TrocaSenha", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", target = "_top", onsubmit = "return frmvalidaCampos(this)", language = "JavaScript", name = "frmTrocaSenha" }))
+    {
 
-                    <div class="panel-heading" style="background-color: purple; color: white; font-weight: bolder; text-align: center;">
-                        Formulario de dados - TrocaSenha
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header" style="background-color: dodgerblue !important;">
+                    <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                    <h4 class="modal-title" style="color: white; text-align: center;">Formulario - Troca de senha</h4>
+                </div>
+
+                <div class="modal-body">
+
+                    <i class="fa fa-exclamation-triangle" style="color: dodgerblue !important;">
+                        <label style="color: black;">Preencha os campos abaixo para que sua senha seja alterada!</label>
+                    </i>
+
+                    <div class="form-group">
+                        <div class="col-md-12 col-lg-12 col-sm-12" style="margin-top: 10px !important;">
+                            <label for="txtLogin" class="font-label">Login do Usuario</label>
+                            @Html.TextBoxFor(model => model.tbUsuario_Login, new { @class = "form-control", @style = "border-radius:4px", @name = "txtLogin", id = "txtLogin", maxlength = "60", @readonly = "readonly" })
+                        </div>
                     </div>
 
-                    <div class="panel-body">
-
-                        <div class="form-group" style="float: left; padding-left: 2px;">
-                            @Html.HiddenFor(Model => Model.tbUsuario_Id)
-                            @Html.HiddenFor(Model => Model.idAction)
+                    <div class="form-group">
+                        <div class="col-md-12 col-lg-12 col-sm-12" style="margin-top: 10px !important;">
+                            <label for="txtSenha" class="font-label">Senha Atual</label>
+                            @Html.PasswordFor(model => model.tbUsuario_Senha, new { @class = "form-control", @style = "border-radius:4px", @name = "txtSenha", id = "txtSenha", maxlength = "10" })
                         </div>
+                    </div>
 
-                        <div class="form-group" style="padding-top: 3px;">
-
-                            <div class="col-md-4">
-                                @Html.LabelFor(Model => Model.tbUsuario_Login, "Login")
-                                @Html.TextBoxFor(Model => Model.tbUsuario_Login, new { @class = "form-control", id = "txtLogin", @name = "txtLogin" })
-                            </div>
-
-                            <div class="col-md-4">
-                                @Html.LabelFor(Model => Model.tbUsuario_Senha, "Senha atual")
-                                @Html.TextBoxFor(Model => Model.tbUsuario_Senha, new { @class = "form-control", @name = "txtSenha", id = "txtSenha", disabled = "true" })
-                            </div>
-
-                            <div class="col-md-4">
-                                @Html.LabelFor(Model => Model.NovaSenha, "Nova senha")
-                                @Html.TextBoxFor(Model => Model.NovaSenha, new { @class = "form-control", @name = "txtNovaSenha", id = "txtNovaSenha" })
-                            </div>
-
+                    <div class="form-group">
+                        <div class="col-md-12 col-lg-12 col-sm-12" style="margin-top: 10px !important;">
+                            <label for="txtNovaSenha" class="font-label">Nova Senha</label>
+                            @Html.PasswordFor(model => model.NovaSenha, new { @class = "form-control", @style = "border-radius:4px", @name = "txtNovaSenha", id = "txtNovaSenha", maxlength = "10" })
                         </div>
-
-                        <div style="float: right !important;">
-                            <a href="@Url.Action("Index","Home")" class="btn" style="background-color: dodgerblue; color: white;"> <i class="fa fa-arrow-left"> Voltar</i></a>
-                            <button type="button" class="btn limpar" value="Cancelar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-eraser"> Cancelar</i></button>
-                            <button type="submit" class="btn" value="Confirmar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-save"> Confirmar</i></button>
-                        </div>
-
                     </div>
                 </div>
-            }
+
+                <div class="modal-footer">
+                    <div style="float: right !important;">
+                            <button type="button" class="btn limpar" value="Cancelar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-eraser"> Limpar</i></button>
+                            <button type="submit" class="btn" value="Confirmar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-save"> Confirmar</i></button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+    }
+
+</body>
+</html>
 
 <script type="text/javascript">
     toastr.options = {
@@ -129,9 +135,8 @@
 
 <script>
     $(".limpar").click(function () {
-        $("#txtLogin").val('');
         $("#txtSenha").val('');
         $("#txtNovaSenha").val('');
-        $("#txtLogin").focus();
+        $("#txtSenha").focus();
     });
 </script> 

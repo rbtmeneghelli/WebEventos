@@ -17,7 +17,6 @@ namespace Cl_Entities
         public tbArea()
         {
             this.tbEvento = new HashSet<tbEvento>();
-            this.tbInstituicao = new HashSet<tbInstituicao>();
             this.tbPalestra = new HashSet<tbPalestra>();
         }
     
@@ -27,7 +26,6 @@ namespace Cl_Entities
         public Nullable<System.DateTime> tbArea_UpdateTime { get; set; }
     
         public virtual ICollection<tbEvento> tbEvento { get; set; }
-        public virtual ICollection<tbInstituicao> tbInstituicao { get; set; }
         public virtual ICollection<tbPalestra> tbPalestra { get; set; }
     }
 }

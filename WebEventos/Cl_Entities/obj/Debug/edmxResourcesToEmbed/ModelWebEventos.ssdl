@@ -73,7 +73,6 @@
     <Property Name="tbInstituicao_Estado" Type="varchar" MaxLength="3" />
     <Property Name="tbInstituicao_Telefone" Type="varchar" MaxLength="15" />
     <Property Name="tbInstituicao_UpdateTime" Type="datetime" />
-    <Property Name="tbArea_Id" Type="bigint" />
   </EntityType>
   <EntityType Name="tbPalestra">
     <Key>
@@ -158,18 +157,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbInstitu__tbAre__2C3393D0">
-    <End Role="tbArea" Type="Self.tbArea" Multiplicity="0..1" />
-    <End Role="tbInstituicao" Type="Self.tbInstituicao" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbArea">
-        <PropertyRef Name="tbArea_Id" />
-      </Principal>
-      <Dependent Role="tbInstituicao">
-        <PropertyRef Name="tbArea_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__tbPalestr__tbAre__286302EC">
     <End Role="tbArea" Type="Self.tbArea" Multiplicity="0..1" />
     <End Role="tbPalestra" Type="Self.tbPalestra" Multiplicity="*" />
@@ -234,10 +221,6 @@
     <AssociationSet Name="FK__tbEvento__tbUsua__1920BF5C" Association="Self.FK__tbEvento__tbUsua__1920BF5C">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbEvento" EntitySet="tbEvento" />
-    </AssociationSet>
-    <AssociationSet Name="FK__tbInstitu__tbAre__2C3393D0" Association="Self.FK__tbInstitu__tbAre__2C3393D0">
-      <End Role="tbArea" EntitySet="tbArea" />
-      <End Role="tbInstituicao" EntitySet="tbInstituicao" />
     </AssociationSet>
     <AssociationSet Name="FK__tbPalestr__tbAre__286302EC" Association="Self.FK__tbPalestr__tbAre__286302EC">
       <End Role="tbArea" EntitySet="tbArea" />

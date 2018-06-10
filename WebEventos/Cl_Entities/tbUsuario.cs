@@ -24,9 +24,9 @@ namespace Cl_Entities
         public long tbUsuario_Id { get; set; }
         public string tbUsuario_Login { get; set; }
         public string tbUsuario_Senha { get; set; }
+        public string tbUsuario_Email { get; set; }
         public Nullable<bool> tbUsuario_Ativo { get; set; }
         public Nullable<System.DateTime> tbUsuario_UpdateTime { get; set; }
-        public string tbUsuario_Email { get; set; }
     
         public virtual tbAcesso tbAcesso { get; set; }
         public virtual ICollection<tbArquivo> tbArquivo { get; set; }

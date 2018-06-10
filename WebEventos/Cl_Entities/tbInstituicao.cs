@@ -23,7 +23,5 @@ namespace Cl_Entities
         public string tbInstituicao_Estado { get; set; }
         public string tbInstituicao_Telefone { get; set; }
         public Nullable<System.DateTime> tbInstituicao_UpdateTime { get; set; }
-    
-        public virtual tbArea tbArea { get; set; }
     }
 }

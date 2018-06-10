@@ -89,10 +89,10 @@
     <EntitySetMapping Name="tbUsuario">
       <EntityTypeMapping TypeName="dbWebEventoModel.tbUsuario">
         <MappingFragment StoreEntitySet="tbUsuario">
-          <ScalarProperty Name="tbUsuario_Email" ColumnName="tbUsuario_Email" />
           <ScalarProperty Name="tbUsuario_Id" ColumnName="tbUsuario_Id" />
           <ScalarProperty Name="tbUsuario_Login" ColumnName="tbUsuario_Login" />
           <ScalarProperty Name="tbUsuario_Senha" ColumnName="tbUsuario_Senha" />
+          <ScalarProperty Name="tbUsuario_Email" ColumnName="tbUsuario_Email" />
           <ScalarProperty Name="tbUsuario_Ativo" ColumnName="tbUsuario_Ativo" />
           <ScalarProperty Name="tbUsuario_UpdateTime" ColumnName="tbUsuario_UpdateTime" />
         </MappingFragment>
@@ -113,15 +113,6 @@
       </EndProperty>
       <EndProperty Name="tbEvento">
         <ScalarProperty Name="tbEvento_Id" ColumnName="tbEvento_Id" />
-      </EndProperty>
-      <Condition IsNull="false" ColumnName="tbArea_Id" />
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="FK__tbInstitu__tbAre__2C3393D0" TypeName="dbWebEventoModel.FK__tbInstitu__tbAre__2C3393D0" StoreEntitySet="tbInstituicao">
-      <EndProperty Name="tbArea">
-        <ScalarProperty Name="tbArea_Id" ColumnName="tbArea_Id" />
-      </EndProperty>
-      <EndProperty Name="tbInstituicao">
-        <ScalarProperty Name="tbInstituicao_Id" ColumnName="tbInstituicao_Id" />
       </EndProperty>
       <Condition IsNull="false" ColumnName="tbArea_Id" />
     </AssociationSetMapping>

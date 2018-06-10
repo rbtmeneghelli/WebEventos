@@ -59,8 +59,6 @@ namespace WebEventos.Controllers
                     listaArea = new AreaFacade().GetAll();
                 else if (userId > 0 && blUserAuth == false)
                     return RedirectToAction("Denied", "Account");
-
-                return View(listaArea);
             }
 
             catch (Exception ex)
@@ -68,7 +66,7 @@ namespace WebEventos.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadGateway);
             }
 
-            return View();
+            return View(listaArea);
         }
 
         [HttpGet]
@@ -79,8 +77,7 @@ namespace WebEventos.Controllers
             else
                 area.idAction = 1;
 
-            //ViewBag.ListaGrupo = new SelectList(new tbMangas().CampoGrupo(), "Id", "Desc", (string.IsNullOrWhiteSpace(MangasData.tbMangas_Grupo) ? "Selecione" : MangasData.tbMangas_Grupo));
-            //ViewBag.ListaEmprestado = new SelectList(new tbMangas().CampoEmprestado(), "Id", "Desc", (string.IsNullOrWhiteSpace(MangasData.tbMangas_Emprestado) ? "Selecione" : MangasData.tbMangas_Emprestado));
+            ViewBag.ListaAtivo = new SelectList(new tbArea().ListaAtivo(), "Id", "Value", area.tbArea_Ativo == true ? "Sim" : "Não");
 
             return View(area);
         }
@@ -91,23 +88,25 @@ namespace WebEventos.Controllers
             switch(Area.idAction)
             {
                 case 1:
+                    Area.tbArea_Ativo = Area.Ativo == "Sim" ? true : false;
                     resultado = new AreaFacade().Insert(Area);
                     ViewBag.Msgtype = resultado.ResultAction == true ? 1 : 0;
                 break;
                 
                 case 2:
+                    Area.tbArea_Ativo = Area.Ativo == "Sim" ? true : false;
                     resultado = new AreaFacade().Update(Area);
                     ViewBag.Msgtype = resultado.ResultAction == true ? 2 : 0;
                 break;
                 
                 case 3:
+                    Area.tbArea_Ativo = Area.Ativo == "Sim" ? true : false;
                     resultado = new AreaFacade().Delete(Area);
                     ViewBag.Msgtype = resultado.ResultAction == true ? 3 : 0;
                 break;
             }
 
-            //ViewBag.ListaGrupo = new SelectList(new tbJogos().CampoGrupo(), "Id", "Desc", (string.IsNullOrWhiteSpace(JogosData.tbJogos_Grupo) ? "Selecione" : JogosData.tbJogos_Grupo));
-            //ViewBag.ListaEmprestado = new SelectList(new tbJogos().CampoEmprestado(), "Id", "Desc", (string.IsNullOrWhiteSpace(JogosData.tbJogos_Emprestado) ? "Selecione" : JogosData.tbJogos_Emprestado));
+            ViewBag.ListaAtivo = new SelectList(new tbArea().ListaAtivo(), "Id", "Value", area.tbArea_Ativo == true ? "Sim" : "Não");
 
             return View(Area);
         }
@@ -127,8 +126,6 @@ namespace WebEventos.Controllers
                     listaAvaliacao = new AvaliacaoFacade().GetAll();
                 else if (userId > 0 && blUserAuth == false)
                     return RedirectToAction("Denied", "Account");
-
-                return View(listaAvaliacao);
             }
 
             catch (Exception ex)
@@ -136,7 +133,7 @@ namespace WebEventos.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadGateway);
             }
 
-            return View();
+            return View(listaAvaliacao);
         }
 
         [HttpGet]
@@ -188,8 +185,6 @@ namespace WebEventos.Controllers
                     listaEvento = new EventoFacade().GetAll();
                 else if (userId > 0 && blUserAuth == false)
                     return RedirectToAction("Denied", "Account");
-
-                return View(listaEvento);
             }
 
             catch (Exception ex)
@@ -197,7 +192,7 @@ namespace WebEventos.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadGateway);
             }
 
-            return View();
+            return View(listaEvento);
         }
 
         [HttpGet]
@@ -249,8 +244,6 @@ namespace WebEventos.Controllers
                     listaInstituicao = new InstituicaoFacade().GetAll();
                 else if (userId > 0 && blUserAuth == false)
                     return RedirectToAction("Denied", "Account");
-
-                return View(listaInstituicao);
             }
 
             catch (Exception ex)
@@ -258,7 +251,7 @@ namespace WebEventos.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadGateway);
             }
 
-            return View();
+            return View(listaInstituicao);
         }
 
         [HttpGet]
@@ -269,8 +262,7 @@ namespace WebEventos.Controllers
             else
                 instituicao.idAction = 1;
 
-            //ViewBag.ListaGrupo = new SelectList(new tbMangas().CampoGrupo(), "Id", "Desc", (string.IsNullOrWhiteSpace(MangasData.tbMangas_Grupo) ? "Selecione" : MangasData.tbMangas_Grupo));
-            //ViewBag.ListaEmprestado = new SelectList(new tbMangas().CampoEmprestado(), "Id", "Desc", (string.IsNullOrWhiteSpace(MangasData.tbMangas_Emprestado) ? "Selecione" : MangasData.tbMangas_Emprestado));
+            ViewBag.ListaEstado = new SelectList(new tbInstituicao().ListaEstado(), "Id", "Value", (string.IsNullOrWhiteSpace(instituicao.tbInstituicao_Estado) == true) ? "SP" : instituicao.tbInstituicao_Estado);
 
             return View(instituicao);
         }
@@ -296,8 +288,7 @@ namespace WebEventos.Controllers
                     break;
             }
 
-            //ViewBag.ListaGrupo = new SelectList(new tbJogos().CampoGrupo(), "Id", "Desc", (string.IsNullOrWhiteSpace(JogosData.tbJogos_Grupo) ? "Selecione" : JogosData.tbJogos_Grupo));
-            //ViewBag.ListaEmprestado = new SelectList(new tbJogos().CampoEmprestado(), "Id", "Desc", (string.IsNullOrWhiteSpace(JogosData.tbJogos_Emprestado) ? "Selecione" : JogosData.tbJogos_Emprestado));
+            ViewBag.ListaEstado = new SelectList(new tbInstituicao().ListaEstado(), "Id", "Value", (string.IsNullOrWhiteSpace(instituicao.tbInstituicao_Estado) == true) ? "SP" : instituicao.tbInstituicao_Estado);
 
             return View(Instituicao);
         }
@@ -310,8 +301,6 @@ namespace WebEventos.Controllers
                     listaPalestra = new PalestraFacade().GetAll();
                 else if (userId > 0 && blUserAuth == false)
                     return RedirectToAction("Denied", "Account");
-
-                return View(listaPalestra);
             }
 
             catch (Exception ex)
@@ -319,7 +308,7 @@ namespace WebEventos.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadGateway);
             }
 
-            return View();
+            return View(listaPalestra);
         }
 
         [HttpGet]
@@ -330,8 +319,8 @@ namespace WebEventos.Controllers
             else
                 palestra.idAction = 1;
 
-            //ViewBag.ListaGrupo = new SelectList(new tbMangas().CampoGrupo(), "Id", "Desc", (string.IsNullOrWhiteSpace(MangasData.tbMangas_Grupo) ? "Selecione" : MangasData.tbMangas_Grupo));
-            //ViewBag.ListaEmprestado = new SelectList(new tbMangas().CampoEmprestado(), "Id", "Desc", (string.IsNullOrWhiteSpace(MangasData.tbMangas_Emprestado) ? "Selecione" : MangasData.tbMangas_Emprestado));
+            ViewBag.ListaArea = new SelectList(new tbPalestra().ListaArea(), "Id", "Value", palestra.tbArea == null ? 0 : palestra.tbArea.tbArea_Id);
+            ViewBag.ListaResponsavel = new SelectList(new tbPalestra().ListaResponsavel(), "Id", "Value", palestra.tbUsuario == null ? 0 : palestra.tbUsuario.tbUsuario_Id);
 
             return View(palestra);
         }
@@ -357,8 +346,8 @@ namespace WebEventos.Controllers
                     break;
             }
 
-            //ViewBag.ListaGrupo = new SelectList(new tbJogos().CampoGrupo(), "Id", "Desc", (string.IsNullOrWhiteSpace(JogosData.tbJogos_Grupo) ? "Selecione" : JogosData.tbJogos_Grupo));
-            //ViewBag.ListaEmprestado = new SelectList(new tbJogos().CampoEmprestado(), "Id", "Desc", (string.IsNullOrWhiteSpace(JogosData.tbJogos_Emprestado) ? "Selecione" : JogosData.tbJogos_Emprestado));
+            ViewBag.ListaArea = new SelectList(new tbPalestra().ListaArea(), "Id", "Value", palestra.tbArea == null ? 0 : palestra.tbArea.tbArea_Id);
+            ViewBag.ListaResponsavel = new SelectList(new tbPalestra().ListaResponsavel(), "Id", "Value", palestra.tbUsuario == null ? 0 : palestra.tbUsuario.tbUsuario_Id);
 
             return View(Palestra);
         }    

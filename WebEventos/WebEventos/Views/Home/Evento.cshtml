@@ -1,0 +1,107 @@
+﻿@model Cl_Entities.tbEvento
+
+@{
+    ViewBag.Title = "Evento";
+}
+
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Painel</a></li>
+    <li><a href="#">Evento</a></li>
+    <li>Formulario Evento</li>
+</ul>
+
+<div class="well well-lg">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12">
+
+            @using (Html.BeginForm("Evento", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", target = "_top", onsubmit = "return frmvalidaCampos(this)", language = "JavaScript", name = "frmEvento" }))
+            {
+                <div class="panel panel-default">
+
+                    <div class="panel-heading" style="background-color: dodgerblue; color: white; font-weight: bolder; text-align: center;">
+                        Formulario Evento
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="form-group" style="float: left; padding-left: 2px;">
+                            @Html.HiddenFor(Model => Model.tbArea_Ativo)
+                        </div>
+
+                        <div class="form-group" style="padding-top: 3px;">
+                            <div class="col-md-6">
+                                @Html.LabelFor(Model => Model.tbArea_Descricao, "Nome do servidor")
+                                @Html.TextBoxFor(Model => Model.tbArea_Descricao, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtServer", id = "txtServer" })
+                            </div>
+
+                            <div class="col-md-6">
+                                @Html.LabelFor(Model => Model.tbArea_Ativo, "Ativo?")
+                                @Html.DropDownListFor(Model => Model.tbArea_Ativo, (SelectList)ViewBag.ListaAtivo, new { @class = "form-control dropdown", @name = "ddAtv", id = "ddAtv" })
+                            </div>
+                        </div>
+
+                        <div style="float: right !important;">
+                            <a href="@Url.Action("ListArea","Home")" class="btn" style="background-color: dodgerblue; color: white;"> <i class="fa fa-arrow-left"> Voltar</i></a>
+                            <button type="button" class="btn limpar" value="Cancelar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-eraser"> Cancelar</i></button>
+                            <button type="submit" class="btn" value="Confirmar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-save"> Confirmar</i></button>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        function frmvalidaCampos(objForm) {
+
+            if (frmBackup.txtServer.value == '') {
+                toastr.warning('Campo em branco, favor preencher', 'Servidor');
+                frmBackup.txtServer.focus();
+                return (false);
+            }
+
+            if (frmBackup.txtDb.value == '') {
+                toastr.warning('Campo em branco, favor preencher', 'Base de dados');
+                frmBackup.txtDb.focus();
+                return (false);
+            }
+
+            if (frmBackup.txtDir.value == '') {
+                toastr.error('Campo em branco, favor preencher', 'Diretorio');
+                frmBackup.txtDir.focus();
+                return (false);
+            }
+
+            return (true);
+        }
+</script>
+
+<script>
+    $(".limpar").click(function () {
+        $("#txtServer").val('');
+        $("#txtDb").val('');
+        $("#txtDir").val('');
+        $("#txtServer").focus();
+    });
+</script> 

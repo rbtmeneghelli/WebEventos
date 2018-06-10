@@ -179,7 +179,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -199,6 +198,10 @@
     <Content Include="Views\Account\Acesso.cshtml" />
     <Content Include="Views\Account\_Esqueceusenha.cshtml" />
     <Content Include="Views\Account\Trocasenha.cshtml" />
+    <Content Include="Views\Home\Area.cshtml" />
+    <Content Include="Views\Home\Evento.cshtml" />
+    <Content Include="Views\Home\Instituicao.cshtml" />
+    <Content Include="Views\Home\Palestra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -115,6 +115,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cl_Tools\Cl_Tools.csproj">
+      <Project>{a11dc549-e04f-498f-b636-1065e88e6457}</Project>
+      <Name>Cl_Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="ModelWebEventos.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelWebEventos.edmx</DependentUpon>
@@ -125,12 +131,6 @@
       <DependentUpon>ModelWebEventos.edmx</DependentUpon>
       <LastGenOutput>ModelWebEventos.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Cl_Tools\Cl_Tools.csproj">
-      <Project>{a11dc549-e04f-498f-b636-1065e88e6457}</Project>
-      <Name>Cl_Tools</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

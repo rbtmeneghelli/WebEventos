@@ -20,7 +20,6 @@
     <Property Name="tbArea_Ativo" Type="Boolean" />
     <Property Name="tbArea_UpdateTime" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbEvento" Relationship="Self.FK__tbEvento__tbUsua__182C9B23" FromRole="tbArea" ToRole="tbEvento" />
-    <NavigationProperty Name="tbInstituicao" Relationship="Self.FK__tbInstitu__tbAre__2C3393D0" FromRole="tbArea" ToRole="tbInstituicao" />
     <NavigationProperty Name="tbPalestra" Relationship="Self.FK__tbPalestr__tbAre__286302EC" FromRole="tbArea" ToRole="tbPalestra" />
   </EntityType>
   <EntityType Name="tbArquivo">
@@ -79,7 +78,6 @@
     <Property Name="tbInstituicao_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
     <Property Name="tbInstituicao_Telefone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="tbInstituicao_UpdateTime" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="tbArea" Relationship="Self.FK__tbInstitu__tbAre__2C3393D0" FromRole="tbInstituicao" ToRole="tbArea" />
   </EntityType>
   <EntityType Name="tbPalestra">
     <Key>
@@ -99,13 +97,13 @@
     <Property Name="tbUsuario_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="tbUsuario_Login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="tbUsuario_Senha" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tbUsuario_Email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
     <Property Name="tbUsuario_Ativo" Type="Boolean" />
     <Property Name="tbUsuario_UpdateTime" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbAcesso" Relationship="Self.FK__tbUsuario__tbAce__145C0A3F" FromRole="tbUsuario" ToRole="tbAcesso" />
     <NavigationProperty Name="tbArquivo" Relationship="Self.FK__tbArquivo__tbUsu__24927208" FromRole="tbUsuario" ToRole="tbArquivo" />
     <NavigationProperty Name="tbEvento" Relationship="Self.FK__tbEvento__tbUsua__1920BF5C" FromRole="tbUsuario" ToRole="tbEvento" />
     <NavigationProperty Name="tbPalestra" Relationship="Self.FK__tbPalestr__tbUsu__29572725" FromRole="tbUsuario" ToRole="tbPalestra" />
-    <Property Name="tbUsuario_Email" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK__tbUsuario__tbAce__145C0A3F">
     <End Role="tbAcesso" Type="Self.tbAcesso" Multiplicity="0..1" />
@@ -114,10 +112,6 @@
   <Association Name="FK__tbEvento__tbUsua__182C9B23">
     <End Role="tbArea" Type="Self.tbArea" Multiplicity="0..1" />
     <End Role="tbEvento" Type="Self.tbEvento" Multiplicity="*" />
-  </Association>
-  <Association Name="FK__tbInstitu__tbAre__2C3393D0">
-    <End Role="tbArea" Type="Self.tbArea" Multiplicity="0..1" />
-    <End Role="tbInstituicao" Type="Self.tbInstituicao" Multiplicity="*" />
   </Association>
   <Association Name="FK__tbPalestr__tbAre__286302EC">
     <End Role="tbArea" Type="Self.tbArea" Multiplicity="0..1" />
@@ -159,10 +153,6 @@
     <AssociationSet Name="FK__tbEvento__tbUsua__182C9B23" Association="Self.FK__tbEvento__tbUsua__182C9B23">
       <End Role="tbArea" EntitySet="tbArea" />
       <End Role="tbEvento" EntitySet="tbEvento" />
-    </AssociationSet>
-    <AssociationSet Name="FK__tbInstitu__tbAre__2C3393D0" Association="Self.FK__tbInstitu__tbAre__2C3393D0">
-      <End Role="tbArea" EntitySet="tbArea" />
-      <End Role="tbInstituicao" EntitySet="tbInstituicao" />
     </AssociationSet>
     <AssociationSet Name="FK__tbPalestr__tbAre__286302EC" Association="Self.FK__tbPalestr__tbAre__286302EC">
       <End Role="tbArea" EntitySet="tbArea" />

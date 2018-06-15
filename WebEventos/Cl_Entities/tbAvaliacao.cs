@@ -25,6 +25,7 @@ namespace Cl_Entities
         public Nullable<decimal> tbAvaliacao_Qualidade { get; set; }
         public Nullable<decimal> tbAvaliacao_Apresentacao { get; set; }
         public Nullable<System.DateTime> tbAvaliacao_UpdateTime { get; set; }
+        public Nullable<long> tbArquivo_Id { get; set; }
     
         public virtual tbArquivo tbArquivo { get; set; }
     }

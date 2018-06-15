@@ -49,6 +49,13 @@ namespace WebEventos.Controllers
                 case 1: //Logar no sistema
                     using (dbWebEventoEntities dbContext = new dbWebEventoEntities())
                     {
+                        dbContext.Configuration.LazyLoadingEnabled = true; //Impede de rastrear demais tabelas!
+                        dbContext.Configuration.ProxyCreationEnabled = false;//Desabilita o proxy
+                        dbContext.Configuration.UseDatabaseNullSemantics = false;
+                        dbContext.Configuration.ValidateOnSaveEnabled = false;
+
+                        //AsNoTracking() incluir isso depois da consulta entity faz que o objeto nao rastrei as demais tabelas vinculadas!
+
                         Usuario.tbUsuario_Senha = security.EncryptText(Usuario.tbUsuario_Senha);
                         tbUsuario usuarioLogado = (from x in dbContext.tbUsuario
                                                    where x.tbUsuario_Login.Equals(Usuario.tbUsuario_Login) && x.tbUsuario_Senha.Equals(Usuario.tbUsuario_Senha)

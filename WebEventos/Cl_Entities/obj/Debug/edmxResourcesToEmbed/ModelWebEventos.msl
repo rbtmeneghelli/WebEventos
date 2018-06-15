@@ -31,6 +31,8 @@
           <ScalarProperty Name="tbArquivo_DataEntrega" ColumnName="tbArquivo_DataEntrega" />
           <ScalarProperty Name="tbArquivo_Documento" ColumnName="tbArquivo_Documento" />
           <ScalarProperty Name="tbArquivo_UpdateTime" ColumnName="tbArquivo_UpdateTime" />
+          <ScalarProperty Name="tbEvento_Id" ColumnName="tbEvento_Id" />
+          <ScalarProperty Name="tbUsuario_Id" ColumnName="tbUsuario_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -48,6 +50,7 @@
           <ScalarProperty Name="tbAvaliacao_Qualidade" ColumnName="tbAvaliacao_Qualidade" />
           <ScalarProperty Name="tbAvaliacao_Apresentacao" ColumnName="tbAvaliacao_Apresentacao" />
           <ScalarProperty Name="tbAvaliacao_UpdateTime" ColumnName="tbAvaliacao_UpdateTime" />
+          <ScalarProperty Name="tbArquivo_Id" ColumnName="tbArquivo_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -58,6 +61,8 @@
           <ScalarProperty Name="tbEvento_Titulo" ColumnName="tbEvento_Titulo" />
           <ScalarProperty Name="tbEvento_DataEvento" ColumnName="tbEvento_DataEvento" />
           <ScalarProperty Name="tbEvento_UpdateTime" ColumnName="tbEvento_UpdateTime" />
+          <ScalarProperty Name="tbArea_Id" ColumnName="tbArea_Id" />
+          <ScalarProperty Name="tbUsuario_Id" ColumnName="tbUsuario_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -83,6 +88,8 @@
           <ScalarProperty Name="tbPalestra_Titulo" ColumnName="tbPalestra_Titulo" />
           <ScalarProperty Name="tbPalestra_DataEvento" ColumnName="tbPalestra_DataEvento" />
           <ScalarProperty Name="tbPalestra_UpdateTime" ColumnName="tbPalestra_UpdateTime" />
+          <ScalarProperty Name="tbArea_Id" ColumnName="tbArea_Id" />
+          <ScalarProperty Name="tbUsuario_Id" ColumnName="tbUsuario_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -95,80 +102,9 @@
           <ScalarProperty Name="tbUsuario_Email" ColumnName="tbUsuario_Email" />
           <ScalarProperty Name="tbUsuario_Ativo" ColumnName="tbUsuario_Ativo" />
           <ScalarProperty Name="tbUsuario_UpdateTime" ColumnName="tbUsuario_UpdateTime" />
+          <ScalarProperty Name="tbAcesso_Id" ColumnName="tbAcesso_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="FK__tbUsuario__tbAce__145C0A3F" TypeName="dbWebEventoModel.FK__tbUsuario__tbAce__145C0A3F" StoreEntitySet="tbUsuario">
-      <EndProperty Name="tbAcesso">
-        <ScalarProperty Name="tbAcesso_Id" ColumnName="tbAcesso_Id" />
-      </EndProperty>
-      <EndProperty Name="tbUsuario">
-        <ScalarProperty Name="tbUsuario_Id" ColumnName="tbUsuario_Id" />
-      </EndProperty>
-      <Condition IsNull="false" ColumnName="tbAcesso_Id" />
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="FK__tbEvento__tbUsua__182C9B23" TypeName="dbWebEventoModel.FK__tbEvento__tbUsua__182C9B23" StoreEntitySet="tbEvento">
-      <EndProperty Name="tbArea">
-        <ScalarProperty Name="tbArea_Id" ColumnName="tbArea_Id" />
-      </EndProperty>
-      <EndProperty Name="tbEvento">
-        <ScalarProperty Name="tbEvento_Id" ColumnName="tbEvento_Id" />
-      </EndProperty>
-      <Condition IsNull="false" ColumnName="tbArea_Id" />
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="FK__tbPalestr__tbAre__286302EC" TypeName="dbWebEventoModel.FK__tbPalestr__tbAre__286302EC" StoreEntitySet="tbPalestra">
-      <EndProperty Name="tbArea">
-        <ScalarProperty Name="tbArea_Id" ColumnName="tbArea_Id" />
-      </EndProperty>
-      <EndProperty Name="tbPalestra">
-        <ScalarProperty Name="tbPalestra_Id" ColumnName="tbPalestra_Id" />
-      </EndProperty>
-      <Condition IsNull="false" ColumnName="tbArea_Id" />
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="FK__tbArquivo__tbEve__25869641" TypeName="dbWebEventoModel.FK__tbArquivo__tbEve__25869641" StoreEntitySet="tbArquivo">
-      <EndProperty Name="tbEvento">
-        <ScalarProperty Name="tbEvento_Id" ColumnName="tbEvento_Id" />
-      </EndProperty>
-      <EndProperty Name="tbArquivo">
-        <ScalarProperty Name="tbArquivo_Id" ColumnName="tbArquivo_Id" />
-      </EndProperty>
-      <Condition IsNull="false" ColumnName="tbEvento_Id" />
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="FK__tbArquivo__tbUsu__24927208" TypeName="dbWebEventoModel.FK__tbArquivo__tbUsu__24927208" StoreEntitySet="tbArquivo">
-      <EndProperty Name="tbUsuario">
-        <ScalarProperty Name="tbUsuario_Id" ColumnName="tbUsuario_Id" />
-      </EndProperty>
-      <EndProperty Name="tbArquivo">
-        <ScalarProperty Name="tbArquivo_Id" ColumnName="tbArquivo_Id" />
-      </EndProperty>
-      <Condition IsNull="false" ColumnName="tbUsuario_Id" />
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="FK__tbAvaliac__tbArq__37A5467C" TypeName="dbWebEventoModel.FK__tbAvaliac__tbArq__37A5467C" StoreEntitySet="tbAvaliacao">
-      <EndProperty Name="tbArquivo">
-        <ScalarProperty Name="tbArquivo_Id" ColumnName="tbArquivo_Id" />
-      </EndProperty>
-      <EndProperty Name="tbAvaliacao">
-        <ScalarProperty Name="tbAvaliacao_Id" ColumnName="tbAvaliacao_Id" />
-      </EndProperty>
-      <Condition IsNull="false" ColumnName="tbArquivo_Id" />
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="FK__tbEvento__tbUsua__1920BF5C" TypeName="dbWebEventoModel.FK__tbEvento__tbUsua__1920BF5C" StoreEntitySet="tbEvento">
-      <EndProperty Name="tbUsuario">
-        <ScalarProperty Name="tbUsuario_Id" ColumnName="tbUsuario_Id" />
-      </EndProperty>
-      <EndProperty Name="tbEvento">
-        <ScalarProperty Name="tbEvento_Id" ColumnName="tbEvento_Id" />
-      </EndProperty>
-      <Condition IsNull="false" ColumnName="tbUsuario_Id" />
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="FK__tbPalestr__tbUsu__29572725" TypeName="dbWebEventoModel.FK__tbPalestr__tbUsu__29572725" StoreEntitySet="tbPalestra">
-      <EndProperty Name="tbUsuario">
-        <ScalarProperty Name="tbUsuario_Id" ColumnName="tbUsuario_Id" />
-      </EndProperty>
-      <EndProperty Name="tbPalestra">
-        <ScalarProperty Name="tbPalestra_Id" ColumnName="tbPalestra_Id" />
-      </EndProperty>
-      <Condition IsNull="false" ColumnName="tbUsuario_Id" />
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

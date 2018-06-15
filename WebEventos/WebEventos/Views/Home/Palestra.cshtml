@@ -27,27 +27,29 @@
 
                         <div class="form-group" style="float: left; padding-left: 2px;">
                             @Html.HiddenFor(Model => Model.tbPalestra_Id)
+                            @Html.HiddenFor(Model => Model.idData)
+                            @Html.HiddenFor(Model => Model.idAction)
                         </div>
 
                         <div class="form-group" style="padding-top: 3px;">
                             <div class="col-md-6">
-                                @Html.LabelFor(Model => Model.tbPalestra_Titulo, "Nome do servidor")
+                                @Html.LabelFor(Model => Model.tbPalestra_Titulo, "Titulo da palestra")
                                 @Html.TextBoxFor(Model => Model.tbPalestra_Titulo, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtServer", id = "txtServer" })
                             </div>
                             <div class="col-md-6">
-                                @Html.LabelFor(Model => Model.tbPalestra_DataEvento, "Nome do servidor")
+                                @Html.LabelFor(Model => Model.tbPalestra_DataEvento, "Data da palestra")
                                 @Html.TextBoxFor(Model => Model.tbPalestra_DataEvento, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtServer", id = "txtServer" })
                             </div>
                         </div>
 
                         <div class="form-group" style="padding-top: 3px;">
                             <div class="col-md-6">
-                                @Html.LabelFor(Model => Model.tbArea.tbArea_Id, "Area")
-                                @Html.DropDownListFor(Model => Model.tbArea.tbArea_Id, (SelectList)ViewBag.ListaArea, new { @class = "form-control dropdown", @name = "ddAtv", id = "ddAtv" })
+                                @Html.LabelFor(Model => Model.tbArea_Id, "Area da palestra")
+                                @Html.DropDownListFor(Model => Model.tbArea_Id, (SelectList)ViewBag.ListaArea, new { @class = "form-control dropdown", @name = "ddAtv", id = "ddAtv" })
                             </div>
                             <div class="col-md-6">
-                                @Html.LabelFor(Model => Model.tbUsuario.tbUsuario_Id, "Responsavel")
-                                @Html.DropDownListFor(Model => Model.tbUsuario.tbUsuario_Id, (SelectList)ViewBag.ListaResponsavel, new { @class = "form-control dropdown", @name = "ddAtv", id = "ddAtv" })
+                                @Html.LabelFor(Model => Model.tbUsuario_Id, "Palestrante responsavel")
+                                @Html.DropDownListFor(Model => Model.tbUsuario_Id, (SelectList)ViewBag.ListaResponsavel, new { @class = "form-control dropdown", @name = "ddAtv", id = "ddAtv" })
                             </div>
                         </div>
 

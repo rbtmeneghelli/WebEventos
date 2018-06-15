@@ -18,6 +18,8 @@ namespace Cl_Entities
         public string tbPalestra_Titulo { get; set; }
         public Nullable<System.DateTime> tbPalestra_DataEvento { get; set; }
         public Nullable<System.DateTime> tbPalestra_UpdateTime { get; set; }
+        public Nullable<long> tbArea_Id { get; set; }
+        public Nullable<long> tbUsuario_Id { get; set; }
     
         public virtual tbArea tbArea { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }

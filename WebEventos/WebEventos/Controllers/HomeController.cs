@@ -319,8 +319,8 @@ namespace WebEventos.Controllers
             else
                 palestra.idAction = 1;
 
-            ViewBag.ListaArea = new SelectList(new tbPalestra().ListaArea(), "Id", "Value", palestra.tbArea == null ? 0 : palestra.tbArea.tbArea_Id);
-            ViewBag.ListaResponsavel = new SelectList(new tbPalestra().ListaResponsavel(), "Id", "Value", palestra.tbUsuario == null ? 0 : palestra.tbUsuario.tbUsuario_Id);
+            ViewBag.ListaArea = new SelectList(new tbPalestra().ListaArea(), "Id", "Value", palestra.tbArea_Id == null || palestra.tbArea_Id == 0 ? 0 : palestra.tbArea_Id);
+            ViewBag.ListaResponsavel = new SelectList(new tbPalestra().ListaResponsavel(), "Id", "Value", palestra.tbUsuario_Id == null || palestra.tbUsuario_Id == 0 ? 0 : palestra.tbUsuario_Id);
 
             return View(palestra);
         }
@@ -346,8 +346,8 @@ namespace WebEventos.Controllers
                     break;
             }
 
-            ViewBag.ListaArea = new SelectList(new tbPalestra().ListaArea(), "Id", "Value", palestra.tbArea == null ? 0 : palestra.tbArea.tbArea_Id);
-            ViewBag.ListaResponsavel = new SelectList(new tbPalestra().ListaResponsavel(), "Id", "Value", palestra.tbUsuario == null ? 0 : palestra.tbUsuario.tbUsuario_Id);
+            ViewBag.ListaArea = new SelectList(new tbPalestra().ListaArea(), "Id", "Value", palestra.tbArea_Id == null || palestra.tbArea_Id == 0 ? 0 : palestra.tbArea_Id);
+            ViewBag.ListaResponsavel = new SelectList(new tbPalestra().ListaResponsavel(), "Id", "Value", palestra.tbUsuario_Id == null || palestra.tbUsuario_Id == 0 ? 0 : palestra.tbUsuario_Id);
 
             return View(Palestra);
         }    

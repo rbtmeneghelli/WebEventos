@@ -35,7 +35,7 @@
                             foreach (var item in Model.OrderBy(x => x.tbPalestra_DataEvento).ThenBy(z => z.tbPalestra_Titulo))
                             {
                                 <tr>
-                                    <td>@item.tbPalestra_DataEvento</td>
+                                    <td>@item.tbPalestra_DataEvento.Value.ToShortDateString()</td>
                                     <td>@item.tbPalestra_Titulo</td>
                                     <td>
                                         @Html.ActionLink(" ", "Palestra", new { idData = @item.tbPalestra_Id, idAction = 2 }, new { @class = "glyphicon glyphicon-edit text-success", @style = "border:0px;  text-decoration:none; ", @title = "Alterar" })

@@ -25,6 +25,8 @@ namespace Cl_Entities
         public Nullable<System.DateTime> tbArquivo_DataEntrega { get; set; }
         public string tbArquivo_Documento { get; set; }
         public Nullable<System.DateTime> tbArquivo_UpdateTime { get; set; }
+        public Nullable<long> tbEvento_Id { get; set; }
+        public Nullable<long> tbUsuario_Id { get; set; }
     
         public virtual tbEvento tbEvento { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }

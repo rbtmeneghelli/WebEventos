@@ -111,9 +111,30 @@ namespace WebEventos.Controllers
             return View(Area);
         }
 
-        public ActionResult Arquivo()
+        public ActionResult Arquivo(int idData, int idAction)
         {
-            ViewBag.Message = "Your contact page.";
+            if (idData > 0)
+                arquivo = new ArquivoFacade().GetId(idData, idAction);
+            else
+                arquivo.idAction = 1;
+
+            ViewBag.ListaEvento = new SelectList(new tbArquivo().ListaEvento(), "Id", "Value", arquivo.tbEvento_Id == null || arquivo.tbEvento_Id == 0 ? 0 : arquivo.tbEvento_Id);
+            ViewBag.ListaPalestra = new SelectList(new tbArquivo().ListaPalestra(), "Id", "Value", arquivo.tbPalestra_Id == null || arquivo.tbPalestra_Id == 0 ? 0 : arquivo.tbPalestra_Id);
+            ViewBag.ListaUsuario = new SelectList(new tbArquivo().ListaResponsavel(), "Id", "Value", arquivo.tbUsuario_Id == null || arquivo.tbUsuario_Id == 0 ? 0 : arquivo.tbPalestra_Id);
+
+            return View(arquivo);
+        }
+
+        [HttpPost]
+        public ActionResult Arquivo(tbArquivo arquivo)
+        {
+            resultado = new ArquivoFacade().UploadArquivo(arquivo, Server.MapPath("~/Files"));
+
+            ViewBag.Msgtype = resultado.ResultAction == true ? 6 : 7;
+
+            ViewBag.ListaEvento = new SelectList(new tbArquivo().ListaEvento(), "Id", "Value", arquivo.tbEvento_Id == null || arquivo.tbEvento_Id == 0 ? 0 : arquivo.tbEvento_Id);
+            ViewBag.ListaPalestra = new SelectList(new tbArquivo().ListaPalestra(), "Id", "Value", arquivo.tbPalestra_Id == null || arquivo.tbPalestra_Id == 0 ? 0 : arquivo.tbPalestra_Id);
+            ViewBag.ListaUsuario = new SelectList(new tbArquivo().ListaResponsavel(), "Id", "Value", arquivo.tbUsuario_Id == null || arquivo.tbUsuario_Id == 0 ? 0 : arquivo.tbPalestra_Id);
 
             return View();
         }

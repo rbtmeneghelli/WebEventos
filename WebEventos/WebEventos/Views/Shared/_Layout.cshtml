@@ -90,6 +90,52 @@
     });
     </script>
 
+    <script>
+        $(document).ready(function () {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
+            var msgType = '@ViewBag.Msgtype';
+
+            if (msgType != '') {
+                toastr.options.onHidden = function () { window.location.href = '@Url.Action("Index","Home")'; };
+                if (msgType == 0)
+                    toastr.error("Erro para executar está ação,tente novamente", "WebEvento");
+                else if (msgType == 1)
+                    toastr.success("Registro incluido com sucesso", "WebEvento");
+                else if (msgType == 2)
+                    toastr.success("Registro atualizado com sucesso", "WebEvento");
+                else if (msgType == 3)
+                    toastr.success("Registro excluido com sucesso", "WebEvento");
+                else if (msgType == 4)
+                    toastr.success("Usuario criado com sucesso", "WebEvento");
+                else if (msgType == 5)
+                    toastr.success("Email enviado com sucesso", "WebEvento");
+                else if (msgType == 6)
+                    toastr.success("Arquivo(s) importado com sucesso", "WebEvento");
+                else if (msgType == 7)
+                    toastr.success("Erro ao importar os arquivo(s). tente novamente!", "WebEvento");
+                else if (msgType == 8)
+                    toastr.success("Procedure executada com sucesso", "WebEvento");
+            }
+        });
+    </script>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

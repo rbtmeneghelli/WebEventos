@@ -21,5 +21,16 @@ namespace Cl_Business
         {
             return new ArquivoProcess().GetAll();
         }
+
+        public Resultado UploadArquivo(tbArquivo pArquivo, string pPath)
+        {
+            return new ArquivoProcess().UploadArquivo(pArquivo, pPath);
+        }
+
+        public tbArquivo GetId(int pIdData, int pIdAction)
+        {
+            return new ArquivoProcess().GetId(pIdData, pIdAction);
+        }
+
     }
 }

@@ -23,7 +23,9 @@ namespace WebEventos
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/toastr.min.js",
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/bootstrap-filestyle.min.js",
+                      "~/Scripts/geral.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/toastr.min.css",

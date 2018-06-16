@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Web;
+using System.IO;
 
 using Cl_Tools;
 using Cl_Entities;
@@ -89,6 +91,97 @@ namespace Cl_Business.Process
             }
 
             return lista;
+        }
+
+        public tbArquivo GetId(int pIdData, int pIdAction)
+        {
+            tbArquivo registro = new tbArquivo();
+
+            try
+            {
+                using (dbWebEventoEntities dbContext = new dbWebEventoEntities())
+                {
+                    registro = (from x in dbContext.tbArquivo
+                                where x.tbArquivo_Id == pIdData
+                                select x).FirstOrDefault();
+
+                    registro.idAction = pIdAction;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                resultado = new Resultado()
+                {
+                    PageName = "Area",
+                    ClassName = "AreaProcess",
+                    MethodName = "GetId",
+                    ExceptionMsg = ex.Message,
+                    ResultAction = false,
+                    DateAction = DateTime.Now,
+                    IdUserAction = 1
+                };
+            }
+
+            return registro;
+        }
+
+        public Resultado UploadArquivo(tbArquivo pArquivo, string pPath)
+        {
+            string nomeArquivo = "";
+            string arquivoEnviados = "";
+            string tipoArquivo = "";
+
+            try
+            {
+                using (dbWebEventoEntities dbContext = new dbWebEventoEntities())
+                {
+                    pArquivo.tbArquivo_UpdateTime = DateTime.Now;
+                    pArquivo.tbArquivo_Documento = "sdsd";
+                    dbContext.tbArquivo.Add(pArquivo);
+                    dbContext.SaveChanges();
+                }
+
+                foreach (var arquivo in pArquivo.Arquivos)
+                {
+                    tipoArquivo = Path.GetExtension(arquivo.FileName);
+
+                    if (arquivo.ContentLength > 0 && (tipoArquivo.Contains(".txt") || tipoArquivo.Contains(".doc") || tipoArquivo.Contains(".docx") || tipoArquivo.Contains(".pdf")))
+                    {
+                        nomeArquivo = Path.GetFileName(arquivo.FileName);
+                        var caminho = Path.Combine(pPath, nomeArquivo);
+                        arquivo.SaveAs(caminho);
+                        arquivoEnviados = arquivoEnviados + " , " + nomeArquivo;
+                    }
+                }
+                
+                resultado = new Resultado()
+                {
+                    PageName = "Arquivo",
+                    ClassName = "ArquivoProcess",
+                    MethodName = "UploadArquivo",
+                    ExceptionMsg = "Arquivo carregado com sucesso",
+                    ResultAction = true,
+                    DateAction = DateTime.Now,
+                    IdUserAction = 1
+                };
+            }
+
+            catch (Exception ex)
+            {
+                resultado = new Resultado()
+                {
+                    PageName = "Arquivo",
+                    ClassName = "ArquivoProcess",
+                    MethodName = "UploadArquivo",
+                    ExceptionMsg = ex.Message,
+                    ResultAction = false,
+                    DateAction = DateTime.Now,
+                    IdUserAction = 1
+                };
+            }
+
+            return resultado;
         }
     }
 }

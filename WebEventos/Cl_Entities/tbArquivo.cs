@@ -27,9 +27,11 @@ namespace Cl_Entities
         public Nullable<System.DateTime> tbArquivo_UpdateTime { get; set; }
         public Nullable<long> tbEvento_Id { get; set; }
         public Nullable<long> tbUsuario_Id { get; set; }
+        public Nullable<long> tbPalestra_Id { get; set; }
     
         public virtual tbEvento tbEvento { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual ICollection<tbAvaliacao> tbAvaliacao { get; set; }
+        public virtual tbPalestra tbPalestra { get; set; }
     }
 }

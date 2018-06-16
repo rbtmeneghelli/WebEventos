@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbWebEventoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbWebEventoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbAcesso">
           <Key>
             <PropertyRef Name="tbAcesso_Id" />
@@ -35,6 +35,7 @@
           <Property Name="tbArquivo_Documento" Type="varchar" MaxLength="3000" />
           <Property Name="tbArquivo_UpdateTime" Type="datetime" />
           <Property Name="tbEvento_Id" Type="bigint" />
+          <Property Name="tbPalestra_Id" Type="bigint" />
           <Property Name="tbUsuario_Id" Type="bigint" />
         </EntityType>
         <EntityType Name="tbAvaliacao">
@@ -111,6 +112,18 @@
             </Principal>
             <Dependent Role="tbArquivo">
               <PropertyRef Name="tbEvento_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbArquivo__tbPal__5AEE82B9">
+          <End Role="tbPalestra" Type="Self.tbPalestra" Multiplicity="0..1" />
+          <End Role="tbArquivo" Type="Self.tbArquivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbPalestra">
+              <PropertyRef Name="tbPalestra_Id" />
+            </Principal>
+            <Dependent Role="tbArquivo">
+              <PropertyRef Name="tbPalestra_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -211,6 +224,10 @@
             <End Role="tbEvento" EntitySet="tbEvento" />
             <End Role="tbArquivo" EntitySet="tbArquivo" />
           </AssociationSet>
+          <AssociationSet Name="FK__tbArquivo__tbPal__5AEE82B9" Association="Self.FK__tbArquivo__tbPal__5AEE82B9">
+            <End Role="tbPalestra" EntitySet="tbPalestra" />
+            <End Role="tbArquivo" EntitySet="tbArquivo" />
+          </AssociationSet>
           <AssociationSet Name="FK__tbArquivo__tbUsu__24927208" Association="Self.FK__tbArquivo__tbUsu__24927208">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbArquivo" EntitySet="tbArquivo" />
@@ -240,8 +257,7 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbWebEventoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -282,6 +298,8 @@
           <NavigationProperty Name="tbEvento" Relationship="Self.FK__tbArquivo__tbEve__25869641" FromRole="tbArquivo" ToRole="tbEvento" />
           <NavigationProperty Name="tbUsuario" Relationship="Self.FK__tbArquivo__tbUsu__24927208" FromRole="tbArquivo" ToRole="tbUsuario" />
           <NavigationProperty Name="tbAvaliacao" Relationship="Self.FK__tbAvaliac__tbArq__37A5467C" FromRole="tbArquivo" ToRole="tbAvaliacao" />
+          <Property Name="tbPalestra_Id" Type="Int64" />
+          <NavigationProperty Name="tbPalestra" Relationship="dbWebEventoModel.FK__tbArquivo__tbPal__5AEE82B9" FromRole="tbArquivo" ToRole="tbPalestra" />
         </EntityType>
         <EntityType Name="tbAvaliacao">
           <Key>
@@ -341,6 +359,7 @@
           <Property Name="tbUsuario_Id" Type="Int64" />
           <NavigationProperty Name="tbArea" Relationship="Self.FK__tbPalestr__tbAre__286302EC" FromRole="tbPalestra" ToRole="tbArea" />
           <NavigationProperty Name="tbUsuario" Relationship="Self.FK__tbPalestr__tbUsu__29572725" FromRole="tbPalestra" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbArquivo" Relationship="dbWebEventoModel.FK__tbArquivo__tbPal__5AEE82B9" FromRole="tbPalestra" ToRole="tbArquivo" />
         </EntityType>
         <EntityType Name="tbUsuario">
           <Key>
@@ -495,7 +514,23 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbPalestra" EntitySet="tbPalestra" />
           </AssociationSet>
+          <AssociationSet Name="FK__tbArquivo__tbPal__5AEE82B9" Association="dbWebEventoModel.FK__tbArquivo__tbPal__5AEE82B9">
+            <End Role="tbPalestra" EntitySet="tbPalestra" />
+            <End Role="tbArquivo" EntitySet="tbArquivo" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__tbArquivo__tbPal__5AEE82B9">
+          <End Type="dbWebEventoModel.tbPalestra" Role="tbPalestra" Multiplicity="0..1" />
+          <End Type="dbWebEventoModel.tbArquivo" Role="tbArquivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbPalestra">
+              <PropertyRef Name="tbPalestra_Id" />
+            </Principal>
+            <Dependent Role="tbArquivo">
+              <PropertyRef Name="tbPalestra_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -526,6 +561,7 @@
           <EntitySetMapping Name="tbArquivo">
             <EntityTypeMapping TypeName="dbWebEventoModel.tbArquivo">
               <MappingFragment StoreEntitySet="tbArquivo">
+                <ScalarProperty Name="tbPalestra_Id" ColumnName="tbPalestra_Id" />
                 <ScalarProperty Name="tbArquivo_Id" ColumnName="tbArquivo_Id" />
                 <ScalarProperty Name="tbArquivo_Titulo" ColumnName="tbArquivo_Titulo" />
                 <ScalarProperty Name="tbArquivo_Descricao" ColumnName="tbArquivo_Descricao" />

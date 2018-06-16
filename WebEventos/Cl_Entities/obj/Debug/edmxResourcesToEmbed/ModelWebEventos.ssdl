@@ -30,6 +30,7 @@
     <Property Name="tbArquivo_Documento" Type="varchar" MaxLength="3000" />
     <Property Name="tbArquivo_UpdateTime" Type="datetime" />
     <Property Name="tbEvento_Id" Type="bigint" />
+    <Property Name="tbPalestra_Id" Type="bigint" />
     <Property Name="tbUsuario_Id" Type="bigint" />
   </EntityType>
   <EntityType Name="tbAvaliacao">
@@ -106,6 +107,18 @@
       </Principal>
       <Dependent Role="tbArquivo">
         <PropertyRef Name="tbEvento_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbArquivo__tbPal__5AEE82B9">
+    <End Role="tbPalestra" Type="Self.tbPalestra" Multiplicity="0..1" />
+    <End Role="tbArquivo" Type="Self.tbArquivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbPalestra">
+        <PropertyRef Name="tbPalestra_Id" />
+      </Principal>
+      <Dependent Role="tbArquivo">
+        <PropertyRef Name="tbPalestra_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -204,6 +217,10 @@
     <EntitySet Name="tbUsuario" EntityType="Self.tbUsuario" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__tbArquivo__tbEve__25869641" Association="Self.FK__tbArquivo__tbEve__25869641">
       <End Role="tbEvento" EntitySet="tbEvento" />
+      <End Role="tbArquivo" EntitySet="tbArquivo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbArquivo__tbPal__5AEE82B9" Association="Self.FK__tbArquivo__tbPal__5AEE82B9">
+      <End Role="tbPalestra" EntitySet="tbPalestra" />
       <End Role="tbArquivo" EntitySet="tbArquivo" />
     </AssociationSet>
     <AssociationSet Name="FK__tbArquivo__tbUsu__24927208" Association="Self.FK__tbArquivo__tbUsu__24927208">

@@ -25,6 +25,7 @@
     <EntitySetMapping Name="tbArquivo">
       <EntityTypeMapping TypeName="dbWebEventoModel.tbArquivo">
         <MappingFragment StoreEntitySet="tbArquivo">
+          <ScalarProperty Name="tbPalestra_Id" ColumnName="tbPalestra_Id" />
           <ScalarProperty Name="tbArquivo_Id" ColumnName="tbArquivo_Id" />
           <ScalarProperty Name="tbArquivo_Titulo" ColumnName="tbArquivo_Titulo" />
           <ScalarProperty Name="tbArquivo_Descricao" ColumnName="tbArquivo_Descricao" />

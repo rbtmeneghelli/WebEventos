@@ -16,5 +16,10 @@ namespace Cl_Business
         {
             return new ArquivoProcess().Backup(pBackup);
         }
+
+        public List<tbArquivo> GetAll()
+        {
+            return new ArquivoProcess().GetAll();
+        }
     }
 }

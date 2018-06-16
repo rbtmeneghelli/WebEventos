@@ -37,6 +37,8 @@
     <NavigationProperty Name="tbEvento" Relationship="Self.FK__tbArquivo__tbEve__25869641" FromRole="tbArquivo" ToRole="tbEvento" />
     <NavigationProperty Name="tbUsuario" Relationship="Self.FK__tbArquivo__tbUsu__24927208" FromRole="tbArquivo" ToRole="tbUsuario" />
     <NavigationProperty Name="tbAvaliacao" Relationship="Self.FK__tbAvaliac__tbArq__37A5467C" FromRole="tbArquivo" ToRole="tbAvaliacao" />
+    <Property Name="tbPalestra_Id" Type="Int64" />
+    <NavigationProperty Name="tbPalestra" Relationship="dbWebEventoModel.FK__tbArquivo__tbPal__5AEE82B9" FromRole="tbArquivo" ToRole="tbPalestra" />
   </EntityType>
   <EntityType Name="tbAvaliacao">
     <Key>
@@ -96,6 +98,7 @@
     <Property Name="tbUsuario_Id" Type="Int64" />
     <NavigationProperty Name="tbArea" Relationship="Self.FK__tbPalestr__tbAre__286302EC" FromRole="tbPalestra" ToRole="tbArea" />
     <NavigationProperty Name="tbUsuario" Relationship="Self.FK__tbPalestr__tbUsu__29572725" FromRole="tbPalestra" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbArquivo" Relationship="dbWebEventoModel.FK__tbArquivo__tbPal__5AEE82B9" FromRole="tbPalestra" ToRole="tbArquivo" />
   </EntityType>
   <EntityType Name="tbUsuario">
     <Key>
@@ -250,5 +253,21 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbPalestra" EntitySet="tbPalestra" />
     </AssociationSet>
+    <AssociationSet Name="FK__tbArquivo__tbPal__5AEE82B9" Association="dbWebEventoModel.FK__tbArquivo__tbPal__5AEE82B9">
+      <End Role="tbPalestra" EntitySet="tbPalestra" />
+      <End Role="tbArquivo" EntitySet="tbArquivo" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK__tbArquivo__tbPal__5AEE82B9">
+    <End Type="dbWebEventoModel.tbPalestra" Role="tbPalestra" Multiplicity="0..1" />
+    <End Type="dbWebEventoModel.tbArquivo" Role="tbArquivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbPalestra">
+        <PropertyRef Name="tbPalestra_Id" />
+      </Principal>
+      <Dependent Role="tbArquivo">
+        <PropertyRef Name="tbPalestra_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

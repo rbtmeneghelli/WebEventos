@@ -21,6 +21,7 @@
         <AssociationConnector Association="dbWebEventoModel.FK__tbAvaliac__tbArq__37A5467C" ManuallyRouted="false" />
         <AssociationConnector Association="dbWebEventoModel.FK__tbEvento__tbUsua__1920BF5C" ManuallyRouted="false" />
         <AssociationConnector Association="dbWebEventoModel.FK__tbPalestr__tbUsu__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="dbWebEventoModel.FK__tbArquivo__tbPal__5AEE82B9" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

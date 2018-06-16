@@ -49,10 +49,10 @@ namespace WebEventos.Controllers
                 case 1: //Logar no sistema
                     using (dbWebEventoEntities dbContext = new dbWebEventoEntities())
                     {
-                        dbContext.Configuration.LazyLoadingEnabled = true; //Impede de rastrear demais tabelas!
-                        dbContext.Configuration.ProxyCreationEnabled = false;//Desabilita o proxy
-                        dbContext.Configuration.UseDatabaseNullSemantics = false;
-                        dbContext.Configuration.ValidateOnSaveEnabled = false;
+                        //dbContext.Configuration.LazyLoadingEnabled = true; //Impede de rastrear demais tabelas!
+                        //dbContext.Configuration.ProxyCreationEnabled = false;//Desabilita o proxy
+                        //dbContext.Configuration.UseDatabaseNullSemantics = false;
+                        //dbContext.Configuration.ValidateOnSaveEnabled = false;
 
                         //AsNoTracking() incluir isso depois da consulta entity faz que o objeto nao rastrei as demais tabelas vinculadas!
 

@@ -61,5 +61,34 @@ namespace Cl_Business.Process
 
             return resultado;
         }
+
+        public List<tbArquivo> GetAll()
+        {
+            List<tbArquivo> lista = new List<tbArquivo>();
+
+            try
+            {
+                using (dbWebEventoEntities dbContext = new dbWebEventoEntities())
+                {
+                    lista = (from x in dbContext.tbArquivo select x).ToList();
+                }
+            }
+
+            catch (Exception ex)
+            {
+                resultado = new Resultado()
+                {
+                    PageName = "Arquivo",
+                    ClassName = "ArquivoProcess",
+                    MethodName = "GetAll",
+                    ExceptionMsg = ex.Message,
+                    ResultAction = false,
+                    DateAction = DateTime.Now,
+                    IdUserAction = 1
+                };
+            }
+
+            return lista;
+        }
     }
 }

@@ -118,6 +118,24 @@ namespace WebEventos.Controllers
             return View();
         }
 
+        public ActionResult ListArquivo()
+        {
+            try
+            {
+                if (userId > 0 && blUserAuth == true)
+                    listaArquivo = new ArquivoFacade().GetAll();
+                else if (userId > 0 && blUserAuth == false)
+                    return RedirectToAction("Denied", "Account");
+            }
+
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadGateway);
+            }
+
+            return View(listaArquivo);
+        }
+
         public ActionResult ListAvaliacao()
         {
             try

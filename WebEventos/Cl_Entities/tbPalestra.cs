@@ -14,6 +14,11 @@ namespace Cl_Entities
     
     public partial class tbPalestra
     {
+        public tbPalestra()
+        {
+            this.tbArquivo = new HashSet<tbArquivo>();
+        }
+    
         public long tbPalestra_Id { get; set; }
         public string tbPalestra_Titulo { get; set; }
         public Nullable<System.DateTime> tbPalestra_DataEvento { get; set; }
@@ -23,5 +28,6 @@ namespace Cl_Entities
     
         public virtual tbArea tbArea { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
+        public virtual ICollection<tbArquivo> tbArquivo { get; set; }
     }
 }

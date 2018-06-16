@@ -203,8 +203,8 @@ namespace WebEventos.Controllers
             else
                 evento.idAction = 1;
 
-            //ViewBag.ListaGrupo = new SelectList(new tbMangas().CampoGrupo(), "Id", "Desc", (string.IsNullOrWhiteSpace(MangasData.tbMangas_Grupo) ? "Selecione" : MangasData.tbMangas_Grupo));
-            //ViewBag.ListaEmprestado = new SelectList(new tbMangas().CampoEmprestado(), "Id", "Desc", (string.IsNullOrWhiteSpace(MangasData.tbMangas_Emprestado) ? "Selecione" : MangasData.tbMangas_Emprestado));
+            ViewBag.ListaArea = new SelectList(new tbEvento().ListaArea(), "Id", "Value", evento.tbArea_Id == null || evento.tbArea_Id == 0 ? 0 : evento.tbArea_Id);
+            ViewBag.ListaResponsavel = new SelectList(new tbEvento().ListaResponsavel(), "Id", "Value", evento.tbUsuario_Id == null || evento.tbUsuario_Id == 0 ? 0 : evento.tbUsuario_Id);
 
             return View(evento);
         }
@@ -230,8 +230,8 @@ namespace WebEventos.Controllers
                     break;
             }
 
-            //ViewBag.ListaGrupo = new SelectList(new tbJogos().CampoGrupo(), "Id", "Desc", (string.IsNullOrWhiteSpace(JogosData.tbJogos_Grupo) ? "Selecione" : JogosData.tbJogos_Grupo));
-            //ViewBag.ListaEmprestado = new SelectList(new tbJogos().CampoEmprestado(), "Id", "Desc", (string.IsNullOrWhiteSpace(JogosData.tbJogos_Emprestado) ? "Selecione" : JogosData.tbJogos_Emprestado));
+            ViewBag.ListaArea = new SelectList(new tbEvento().ListaArea(), "Id", "Value", evento.tbArea_Id == null || evento.tbArea_Id == 0 ? 0 : evento.tbArea_Id);
+            ViewBag.ListaResponsavel = new SelectList(new tbEvento().ListaResponsavel(), "Id", "Value", evento.tbUsuario_Id == null || evento.tbUsuario_Id == 0 ? 0 : evento.tbUsuario_Id);
 
             return View(Evento);
         }

@@ -26,23 +26,36 @@
                     <div class="panel-body">
 
                         <div class="form-group" style="float: left; padding-left: 2px;">
-                            @Html.HiddenFor(Model => Model.tbArea_Ativo)
+                            @Html.HiddenFor(Model => Model.tbEvento_Id)
+                            @Html.HiddenFor(Model => Model.idData)
+                            @Html.HiddenFor(Model => Model.idAction)
                         </div>
 
                         <div class="form-group" style="padding-top: 3px;">
                             <div class="col-md-6">
-                                @Html.LabelFor(Model => Model.tbArea_Descricao, "Nome do servidor")
-                                @Html.TextBoxFor(Model => Model.tbArea_Descricao, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtServer", id = "txtServer" })
+                                @Html.LabelFor(Model => Model.tbEvento_Titulo, "Nome do evento")
+                                @Html.TextBoxFor(Model => Model.tbEvento_Titulo, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtTitulo", id = "txtTitulo" })
                             </div>
 
                             <div class="col-md-6">
-                                @Html.LabelFor(Model => Model.tbArea_Ativo, "Ativo?")
-                                @Html.DropDownListFor(Model => Model.tbArea_Ativo, (SelectList)ViewBag.ListaAtivo, new { @class = "form-control dropdown", @name = "ddAtv", id = "ddAtv" })
+                                @Html.LabelFor(Model => Model.tbEvento_DataEvento, "Data do evento")
+                                @Html.TextBoxFor(Model => Model.tbEvento_DataEvento, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtData", id = "txtData" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="padding-top: 3px;">
+                            <div class="col-md-6">
+                                @Html.LabelFor(Model => Model.tbArea_Id, "Area do evento")
+                                @Html.DropDownListFor(Model => Model.tbArea_Id, (SelectList)ViewBag.ListaArea, new { @class = "form-control dropdown", @name = "ddArea", id = "ddArea" })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(Model => Model.tbUsuario_Id, "Evento responsavel")
+                                @Html.DropDownListFor(Model => Model.tbUsuario_Id, (SelectList)ViewBag.ListaResponsavel, new { @class = "form-control dropdown", @name = "ddResp", id = "ddResp" })
                             </div>
                         </div>
 
                         <div style="float: right !important;">
-                            <a href="@Url.Action("ListArea","Home")" class="btn" style="background-color: dodgerblue; color: white;"> <i class="fa fa-arrow-left"> Voltar</i></a>
+                            <a href="@Url.Action("ListEvento","Home")" class="btn" style="background-color: dodgerblue; color: white;"> <i class="fa fa-arrow-left"> Voltar</i></a>
                             <button type="button" class="btn limpar" value="Cancelar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-eraser"> Cancelar</i></button>
                             <button type="submit" class="btn" value="Confirmar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-save"> Confirmar</i></button>
                         </div>
@@ -99,9 +112,8 @@
 
 <script>
     $(".limpar").click(function () {
-        $("#txtServer").val('');
-        $("#txtDb").val('');
-        $("#txtDir").val('');
-        $("#txtServer").focus();
+        $("#txtTitulo").val('');
+        $("#txtData").val('');
+        $("#txtTitulo").focus();
     });
 </script> 

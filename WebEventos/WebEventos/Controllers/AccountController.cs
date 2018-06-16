@@ -70,7 +70,7 @@ namespace WebEventos.Controllers
                                 //Armazena as informações do usuario logado aqui!
                                 System.Web.HttpContext.Current.Session["userId"] = usuarioLogado.tbUsuario_Id;
                                 System.Web.HttpContext.Current.Session["userName"] = usuarioLogado.tbUsuario_Login;
-                                System.Web.HttpContext.Current.Session["userAuth"] = (usuarioLogado.tbAcesso.tbAcesso_Ativo == true ? "True" : "False");
+                               System.Web.HttpContext.Current.Session["userAuth"] = (usuarioLogado.tbAcesso.tbAcesso_Ativo == true ? "True" : "False");
                                 usuarioLogado.tbUsuario_UpdateTime = DateTime.Now;
 
                                 dbContext.SaveChanges();

@@ -17,6 +17,7 @@ namespace Cl_Entities
         public tbUsuario()
         {
             this.tbArquivo = new HashSet<tbArquivo>();
+            this.tbAvaliacao = new HashSet<tbAvaliacao>();
             this.tbEvento = new HashSet<tbEvento>();
             this.tbPalestra = new HashSet<tbPalestra>();
         }
@@ -31,6 +32,7 @@ namespace Cl_Entities
     
         public virtual tbAcesso tbAcesso { get; set; }
         public virtual ICollection<tbArquivo> tbArquivo { get; set; }
+        public virtual ICollection<tbAvaliacao> tbAvaliacao { get; set; }
         public virtual ICollection<tbEvento> tbEvento { get; set; }
         public virtual ICollection<tbPalestra> tbPalestra { get; set; }
     }

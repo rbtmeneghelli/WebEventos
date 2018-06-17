@@ -33,12 +33,31 @@
     <Property Name="tbArquivo_Documento" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
     <Property Name="tbArquivo_UpdateTime" Type="DateTime" Precision="3" />
     <Property Name="tbEvento_Id" Type="Int64" />
+    <Property Name="tbPalestra_Id" Type="Int64" />
     <Property Name="tbUsuario_Id" Type="Int64" />
     <NavigationProperty Name="tbEvento" Relationship="Self.FK__tbArquivo__tbEve__25869641" FromRole="tbArquivo" ToRole="tbEvento" />
+    <NavigationProperty Name="tbPalestra" Relationship="Self.FK__tbArquivo__tbPal__5AEE82B9" FromRole="tbArquivo" ToRole="tbPalestra" />
     <NavigationProperty Name="tbUsuario" Relationship="Self.FK__tbArquivo__tbUsu__24927208" FromRole="tbArquivo" ToRole="tbUsuario" />
-    <Property Name="tbPalestra_Id" Type="Int64" />
-    <NavigationProperty Name="tbPalestra" Relationship="dbWebEventoModel.FK__tbArquivo__tbPal__5AEE82B9" FromRole="tbArquivo" ToRole="tbPalestra" />
-    <NavigationProperty Name="tbAvaliacao" Relationship="dbWebEventoModel.FK__tbAvaliac__tbArq__37A5467C" FromRole="tbArquivo" ToRole="tbAvaliacao" />
+    <NavigationProperty Name="tbAvaliacao" Relationship="Self.FK__tbAvaliac__tbArq__37A5467C" FromRole="tbArquivo" ToRole="tbAvaliacao" />
+  </EntityType>
+  <EntityType Name="tbAvaliacao">
+    <Key>
+      <PropertyRef Name="tbAvaliacao_Id" />
+    </Key>
+    <Property Name="tbAvaliacao_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tbAvaliacao_Data" Type="DateTime" Precision="3" />
+    <Property Name="tbAvaliacao_Origem" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="tbAvaliacao_Objetivo" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="tbAvaliacao_Clareza" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="tbAvaliacao_Dominio" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="tbAvaliacao_Qualidade" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="tbAvaliacao_Apresentacao" Type="Decimal" Precision="20" Scale="2" />
+    <Property Name="tbAvaliacao_Status" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="tbAvaliacao_UpdateTime" Type="DateTime" Precision="3" />
+    <Property Name="tbArquivo_Id" Type="Int64" />
+    <Property Name="tbUsuario_Id" Type="Int64" />
+    <NavigationProperty Name="tbArquivo" Relationship="Self.FK__tbAvaliac__tbArq__37A5467C" FromRole="tbAvaliacao" ToRole="tbArquivo" />
+    <NavigationProperty Name="tbUsuario" Relationship="Self.FK__tbAvaliac__tbUsu__01142BA1" FromRole="tbAvaliacao" ToRole="tbUsuario" />
   </EntityType>
   <EntityType Name="tbEvento">
     <Key>
@@ -79,8 +98,8 @@
     <Property Name="tbArea_Id" Type="Int64" />
     <Property Name="tbUsuario_Id" Type="Int64" />
     <NavigationProperty Name="tbArea" Relationship="Self.FK__tbPalestr__tbAre__286302EC" FromRole="tbPalestra" ToRole="tbArea" />
+    <NavigationProperty Name="tbArquivo" Relationship="Self.FK__tbArquivo__tbPal__5AEE82B9" FromRole="tbPalestra" ToRole="tbArquivo" />
     <NavigationProperty Name="tbUsuario" Relationship="Self.FK__tbPalestr__tbUsu__29572725" FromRole="tbPalestra" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbArquivo" Relationship="dbWebEventoModel.FK__tbArquivo__tbPal__5AEE82B9" FromRole="tbPalestra" ToRole="tbArquivo" />
   </EntityType>
   <EntityType Name="tbUsuario">
     <Key>
@@ -95,6 +114,7 @@
     <Property Name="tbAcesso_Id" Type="Int64" />
     <NavigationProperty Name="tbAcesso" Relationship="Self.FK__tbUsuario__tbAce__145C0A3F" FromRole="tbUsuario" ToRole="tbAcesso" />
     <NavigationProperty Name="tbArquivo" Relationship="Self.FK__tbArquivo__tbUsu__24927208" FromRole="tbUsuario" ToRole="tbArquivo" />
+    <NavigationProperty Name="tbAvaliacao" Relationship="Self.FK__tbAvaliac__tbUsu__01142BA1" FromRole="tbUsuario" ToRole="tbAvaliacao" />
     <NavigationProperty Name="tbEvento" Relationship="Self.FK__tbEvento__tbUsua__1920BF5C" FromRole="tbUsuario" ToRole="tbEvento" />
     <NavigationProperty Name="tbPalestra" Relationship="Self.FK__tbPalestr__tbUsu__29572725" FromRole="tbUsuario" ToRole="tbPalestra" />
   </EntityType>
@@ -146,6 +166,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__tbArquivo__tbPal__5AEE82B9">
+    <End Role="tbPalestra" Type="Self.tbPalestra" Multiplicity="0..1" />
+    <End Role="tbArquivo" Type="Self.tbArquivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbPalestra">
+        <PropertyRef Name="tbPalestra_Id" />
+      </Principal>
+      <Dependent Role="tbArquivo">
+        <PropertyRef Name="tbPalestra_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__tbArquivo__tbUsu__24927208">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
     <End Role="tbArquivo" Type="Self.tbArquivo" Multiplicity="*" />
@@ -154,6 +186,30 @@
         <PropertyRef Name="tbUsuario_Id" />
       </Principal>
       <Dependent Role="tbArquivo">
+        <PropertyRef Name="tbUsuario_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbAvaliac__tbArq__37A5467C">
+    <End Role="tbArquivo" Type="Self.tbArquivo" Multiplicity="0..1" />
+    <End Role="tbAvaliacao" Type="Self.tbAvaliacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbArquivo">
+        <PropertyRef Name="tbArquivo_Id" />
+      </Principal>
+      <Dependent Role="tbAvaliacao">
+        <PropertyRef Name="tbArquivo_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbAvaliac__tbUsu__01142BA1">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbAvaliacao" Type="Self.tbAvaliacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="tbUsuario_Id" />
+      </Principal>
+      <Dependent Role="tbAvaliacao">
         <PropertyRef Name="tbUsuario_Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -186,6 +242,7 @@
     <EntitySet Name="tbAcesso" EntityType="Self.tbAcesso" />
     <EntitySet Name="tbArea" EntityType="Self.tbArea" />
     <EntitySet Name="tbArquivo" EntityType="Self.tbArquivo" />
+    <EntitySet Name="tbAvaliacao" EntityType="Self.tbAvaliacao" />
     <EntitySet Name="tbEvento" EntityType="Self.tbEvento" />
     <EntitySet Name="tbInstituicao" EntityType="Self.tbInstituicao" />
     <EntitySet Name="tbPalestra" EntityType="Self.tbPalestra" />
@@ -206,9 +263,21 @@
       <End Role="tbEvento" EntitySet="tbEvento" />
       <End Role="tbArquivo" EntitySet="tbArquivo" />
     </AssociationSet>
+    <AssociationSet Name="FK__tbArquivo__tbPal__5AEE82B9" Association="Self.FK__tbArquivo__tbPal__5AEE82B9">
+      <End Role="tbPalestra" EntitySet="tbPalestra" />
+      <End Role="tbArquivo" EntitySet="tbArquivo" />
+    </AssociationSet>
     <AssociationSet Name="FK__tbArquivo__tbUsu__24927208" Association="Self.FK__tbArquivo__tbUsu__24927208">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbArquivo" EntitySet="tbArquivo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbAvaliac__tbArq__37A5467C" Association="Self.FK__tbAvaliac__tbArq__37A5467C">
+      <End Role="tbArquivo" EntitySet="tbArquivo" />
+      <End Role="tbAvaliacao" EntitySet="tbAvaliacao" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbAvaliac__tbUsu__01142BA1" Association="Self.FK__tbAvaliac__tbUsu__01142BA1">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbAvaliacao" EntitySet="tbAvaliacao" />
     </AssociationSet>
     <AssociationSet Name="FK__tbEvento__tbUsua__1920BF5C" Association="Self.FK__tbEvento__tbUsua__1920BF5C">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -218,56 +287,5 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbPalestra" EntitySet="tbPalestra" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbArquivo__tbPal__5AEE82B9" Association="dbWebEventoModel.FK__tbArquivo__tbPal__5AEE82B9">
-      <End Role="tbPalestra" EntitySet="tbPalestra" />
-      <End Role="tbArquivo" EntitySet="tbArquivo" />
-    </AssociationSet>
-    <EntitySet Name="tbAvaliacao" EntityType="dbWebEventoModel.tbAvaliacao" />
-    <AssociationSet Name="FK__tbAvaliac__tbArq__37A5467C" Association="dbWebEventoModel.FK__tbAvaliac__tbArq__37A5467C">
-      <End Role="tbArquivo" EntitySet="tbArquivo" />
-      <End Role="tbAvaliacao" EntitySet="tbAvaliacao" />
-    </AssociationSet>
   </EntityContainer>
-  <Association Name="FK__tbArquivo__tbPal__5AEE82B9">
-    <End Type="dbWebEventoModel.tbPalestra" Role="tbPalestra" Multiplicity="0..1" />
-    <End Type="dbWebEventoModel.tbArquivo" Role="tbArquivo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbPalestra">
-        <PropertyRef Name="tbPalestra_Id" />
-      </Principal>
-      <Dependent Role="tbArquivo">
-        <PropertyRef Name="tbPalestra_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="tbAvaliacao">
-    <Key>
-      <PropertyRef Name="tbAvaliacao_Id" />
-    </Key>
-    <Property Name="tbAvaliacao_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="tbAvaliacao_Responsavel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="tbAvaliacao_Data" Type="DateTime" Precision="3" />
-    <Property Name="tbAvaliacao_Origem" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="tbAvaliacao_Objetivo" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="tbAvaliacao_Clareza" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="tbAvaliacao_Dominio" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="tbAvaliacao_Qualidade" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="tbAvaliacao_Apresentacao" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="tbAvaliacao_Status" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-    <Property Name="tbAvaliacao_UpdateTime" Type="DateTime" Precision="3" />
-    <Property Name="tbArquivo_Id" Type="Int64" />
-    <NavigationProperty Name="tbArquivo" Relationship="dbWebEventoModel.FK__tbAvaliac__tbArq__37A5467C" FromRole="tbAvaliacao" ToRole="tbArquivo" />
-  </EntityType>
-  <Association Name="FK__tbAvaliac__tbArq__37A5467C">
-    <End Type="dbWebEventoModel.tbArquivo" Role="tbArquivo" Multiplicity="0..1" />
-    <End Type="dbWebEventoModel.tbAvaliacao" Role="tbAvaliacao" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbArquivo">
-        <PropertyRef Name="tbArquivo_Id" />
-      </Principal>
-      <Dependent Role="tbAvaliacao">
-        <PropertyRef Name="tbArquivo_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

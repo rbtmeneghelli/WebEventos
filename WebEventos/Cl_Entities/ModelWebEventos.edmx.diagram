@@ -4,24 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="76559403689041238949b8bd527eb695" Name="Diagram1">
-        <EntityTypeShape EntityType="dbWebEventoModel.tbAcesso" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbWebEventoModel.tbArea" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbWebEventoModel.tbArquivo" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbWebEventoModel.tbEvento" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
+      <Diagram DiagramId="c464ce6060bd40acbed404013da0ef67" Name="Diagram1">
+        <EntityTypeShape EntityType="dbWebEventoModel.tbAcesso" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbWebEventoModel.tbArea" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbWebEventoModel.tbArquivo" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbWebEventoModel.tbAvaliacao" Width="1.5" PointX="10.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbWebEventoModel.tbEvento" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="dbWebEventoModel.tbInstituicao" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbWebEventoModel.tbPalestra" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbWebEventoModel.tbUsuario" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbWebEventoModel.tbPalestra" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbWebEventoModel.tbUsuario" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
         <AssociationConnector Association="dbWebEventoModel.FK__tbUsuario__tbAce__145C0A3F" ManuallyRouted="false" />
         <AssociationConnector Association="dbWebEventoModel.FK__tbEvento__tbUsua__182C9B23" ManuallyRouted="false" />
         <AssociationConnector Association="dbWebEventoModel.FK__tbPalestr__tbAre__286302EC" ManuallyRouted="false" />
         <AssociationConnector Association="dbWebEventoModel.FK__tbArquivo__tbEve__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="dbWebEventoModel.FK__tbArquivo__tbPal__5AEE82B9" ManuallyRouted="false" />
         <AssociationConnector Association="dbWebEventoModel.FK__tbArquivo__tbUsu__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="dbWebEventoModel.FK__tbAvaliac__tbArq__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="dbWebEventoModel.FK__tbAvaliac__tbUsu__01142BA1" ManuallyRouted="false" />
         <AssociationConnector Association="dbWebEventoModel.FK__tbEvento__tbUsua__1920BF5C" ManuallyRouted="false" />
         <AssociationConnector Association="dbWebEventoModel.FK__tbPalestr__tbUsu__29572725" ManuallyRouted="false" />
-        <AssociationConnector Association="dbWebEventoModel.FK__tbArquivo__tbPal__5AEE82B9" />
-        <EntityTypeShape EntityType="dbWebEventoModel.tbAvaliacao" Width="1.5" PointX="7.5" PointY="8.875" />
-        <AssociationConnector Association="dbWebEventoModel.FK__tbAvaliac__tbArq__37A5467C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

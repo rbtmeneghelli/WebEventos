@@ -27,7 +27,7 @@ namespace Cl_Entities
         public Nullable<long> tbUsuario_Id { get; set; }
     
         public virtual tbArea tbArea { get; set; }
-        public virtual tbUsuario tbUsuario { get; set; }
         public virtual ICollection<tbArquivo> tbArquivo { get; set; }
+        public virtual tbUsuario tbUsuario { get; set; }
     }
 }

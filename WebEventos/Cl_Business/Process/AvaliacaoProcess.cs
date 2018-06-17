@@ -63,7 +63,6 @@ namespace Cl_Business.Process
 
                     if (aval != null)
                     {
-                        aval.tbAvaliacao_Responsavel = string.IsNullOrWhiteSpace(pAval.tbAvaliacao_Responsavel) ? aval.tbAvaliacao_Responsavel : pAval.tbAvaliacao_Responsavel;
                         aval.tbAvaliacao_Status = string.IsNullOrWhiteSpace(pAval.tbAvaliacao_Status) ? aval.tbAvaliacao_Status : pAval.tbAvaliacao_Status;
                         aval.tbAvaliacao_Apresentacao = pAval.tbAvaliacao_Apresentacao;
                         aval.tbAvaliacao_Clareza = pAval.tbAvaliacao_Clareza;
@@ -192,23 +191,43 @@ namespace Cl_Business.Process
             {
                 using (dbWebEventoEntities dbContext = new dbWebEventoEntities())
                 {
-                    lista = (from x in dbContext.tbAvaliacao 
-                             select new tbAvaliacao() {
-                             tbAvaliacao_Id = x.tbAvaliacao_Id,
-                             tbAvaliacao_Responsavel = x.tbAvaliacao_Responsavel,
-                             tbAvaliacao_Data = x.tbAvaliacao_Data,
-                             tbAvaliacao_Origem = x.tbAvaliacao_Origem,
-                             tbAvaliacao_Objetivo = x.tbAvaliacao_Objetivo,
-                             tbAvaliacao_Clareza = x.tbAvaliacao_Clareza,
-                             tbAvaliacao_Dominio = x.tbAvaliacao_Dominio,
-                             tbAvaliacao_Qualidade = x.tbAvaliacao_Qualidade,
-                             tbAvaliacao_Apresentacao = x.tbAvaliacao_Apresentacao,
-                             tbAvaliacao_Status = x.tbAvaliacao_Status,
-                             tbAvaliacao_UpdateTime = x.tbAvaliacao_UpdateTime,
-                             tbArquivo_Id = x.tbArquivo_Id,
-                             tbAvaliacao_Titulo = (from z in dbContext.tbArquivo where z.tbArquivo_Id == x.tbArquivo_Id select z.tbArquivo_Titulo).FirstOrDefault(),
+                    var lista2 = (from x in dbContext.tbAvaliacao
+                             select new
+                             {
+                                 tbAvaliacao_Id = x.tbAvaliacao_Id,
+                                 tbAvaliacao_Data = x.tbAvaliacao_Data,
+                                 tbAvaliacao_Origem = x.tbAvaliacao_Origem,
+                                 tbAvaliacao_Objetivo = x.tbAvaliacao_Objetivo,
+                                 tbAvaliacao_Clareza = x.tbAvaliacao_Clareza,
+                                 tbAvaliacao_Dominio = x.tbAvaliacao_Dominio,
+                                 tbAvaliacao_Qualidade = x.tbAvaliacao_Qualidade,
+                                 tbAvaliacao_Apresentacao = x.tbAvaliacao_Apresentacao,
+                                 tbAvaliacao_Status = x.tbAvaliacao_Status,
+                                 tbAvaliacao_UpdateTime = x.tbAvaliacao_UpdateTime,
+                                 tbArquivo_Id = x.tbArquivo_Id,
+                                 tbAvaliacao_UserName = (from y in dbContext.tbUsuario where y.tbUsuario_Id == x.tbUsuario_Id select y.tbUsuario_Email.ToString()).FirstOrDefault(),
+                                 tbAvaliacao_Titulo = (from z in dbContext.tbArquivo where z.tbArquivo_Id == x.tbArquivo_Id select z.tbArquivo_Titulo.ToString()).FirstOrDefault()
+                             });
 
-                             }).ToList();
+                    foreach(var item in lista2)
+                    {
+                        lista.Add(new tbAvaliacao()
+                        {
+                            tbAvaliacao_Id = item.tbAvaliacao_Id,
+                            tbAvaliacao_Data = item.tbAvaliacao_Data,
+                            tbAvaliacao_Origem = item.tbAvaliacao_Origem,
+                            tbAvaliacao_Objetivo = item.tbAvaliacao_Objetivo,
+                            tbAvaliacao_Clareza = item.tbAvaliacao_Clareza,
+                            tbAvaliacao_Dominio = item.tbAvaliacao_Dominio,
+                            tbAvaliacao_Qualidade = item.tbAvaliacao_Qualidade,
+                            tbAvaliacao_Apresentacao = item.tbAvaliacao_Apresentacao,
+                            tbAvaliacao_Status = item.tbAvaliacao_Status,
+                            tbAvaliacao_UpdateTime = item.tbAvaliacao_UpdateTime,
+                            tbArquivo_Id = item.tbArquivo_Id,
+                            tbAvaliacao_UserName = item.tbAvaliacao_UserName,
+                            tbAvaliacao_Titulo = item.tbAvaliacao_Titulo
+                        });
+                    }
                 }
             }
 

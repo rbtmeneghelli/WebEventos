@@ -25,7 +25,6 @@
     <EntitySetMapping Name="tbArquivo">
       <EntityTypeMapping TypeName="dbWebEventoModel.tbArquivo">
         <MappingFragment StoreEntitySet="tbArquivo">
-          <ScalarProperty Name="tbPalestra_Id" ColumnName="tbPalestra_Id" />
           <ScalarProperty Name="tbArquivo_Id" ColumnName="tbArquivo_Id" />
           <ScalarProperty Name="tbArquivo_Titulo" ColumnName="tbArquivo_Titulo" />
           <ScalarProperty Name="tbArquivo_Descricao" ColumnName="tbArquivo_Descricao" />
@@ -33,6 +32,25 @@
           <ScalarProperty Name="tbArquivo_Documento" ColumnName="tbArquivo_Documento" />
           <ScalarProperty Name="tbArquivo_UpdateTime" ColumnName="tbArquivo_UpdateTime" />
           <ScalarProperty Name="tbEvento_Id" ColumnName="tbEvento_Id" />
+          <ScalarProperty Name="tbPalestra_Id" ColumnName="tbPalestra_Id" />
+          <ScalarProperty Name="tbUsuario_Id" ColumnName="tbUsuario_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbAvaliacao">
+      <EntityTypeMapping TypeName="dbWebEventoModel.tbAvaliacao">
+        <MappingFragment StoreEntitySet="tbAvaliacao">
+          <ScalarProperty Name="tbAvaliacao_Id" ColumnName="tbAvaliacao_Id" />
+          <ScalarProperty Name="tbAvaliacao_Data" ColumnName="tbAvaliacao_Data" />
+          <ScalarProperty Name="tbAvaliacao_Origem" ColumnName="tbAvaliacao_Origem" />
+          <ScalarProperty Name="tbAvaliacao_Objetivo" ColumnName="tbAvaliacao_Objetivo" />
+          <ScalarProperty Name="tbAvaliacao_Clareza" ColumnName="tbAvaliacao_Clareza" />
+          <ScalarProperty Name="tbAvaliacao_Dominio" ColumnName="tbAvaliacao_Dominio" />
+          <ScalarProperty Name="tbAvaliacao_Qualidade" ColumnName="tbAvaliacao_Qualidade" />
+          <ScalarProperty Name="tbAvaliacao_Apresentacao" ColumnName="tbAvaliacao_Apresentacao" />
+          <ScalarProperty Name="tbAvaliacao_Status" ColumnName="tbAvaliacao_Status" />
+          <ScalarProperty Name="tbAvaliacao_UpdateTime" ColumnName="tbAvaliacao_UpdateTime" />
+          <ScalarProperty Name="tbArquivo_Id" ColumnName="tbArquivo_Id" />
           <ScalarProperty Name="tbUsuario_Id" ColumnName="tbUsuario_Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -86,24 +104,6 @@
           <ScalarProperty Name="tbUsuario_Ativo" ColumnName="tbUsuario_Ativo" />
           <ScalarProperty Name="tbUsuario_UpdateTime" ColumnName="tbUsuario_UpdateTime" />
           <ScalarProperty Name="tbAcesso_Id" ColumnName="tbAcesso_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbAvaliacao">
-      <EntityTypeMapping TypeName="dbWebEventoModel.tbAvaliacao">
-        <MappingFragment StoreEntitySet="tbAvaliacao">
-          <ScalarProperty Name="tbArquivo_Id" ColumnName="tbArquivo_Id" />
-          <ScalarProperty Name="tbAvaliacao_UpdateTime" ColumnName="tbAvaliacao_UpdateTime" />
-          <ScalarProperty Name="tbAvaliacao_Status" ColumnName="tbAvaliacao_Status" />
-          <ScalarProperty Name="tbAvaliacao_Apresentacao" ColumnName="tbAvaliacao_Apresentacao" />
-          <ScalarProperty Name="tbAvaliacao_Qualidade" ColumnName="tbAvaliacao_Qualidade" />
-          <ScalarProperty Name="tbAvaliacao_Dominio" ColumnName="tbAvaliacao_Dominio" />
-          <ScalarProperty Name="tbAvaliacao_Clareza" ColumnName="tbAvaliacao_Clareza" />
-          <ScalarProperty Name="tbAvaliacao_Objetivo" ColumnName="tbAvaliacao_Objetivo" />
-          <ScalarProperty Name="tbAvaliacao_Origem" ColumnName="tbAvaliacao_Origem" />
-          <ScalarProperty Name="tbAvaliacao_Data" ColumnName="tbAvaliacao_Data" />
-          <ScalarProperty Name="tbAvaliacao_Responsavel" ColumnName="tbAvaliacao_Responsavel" />
-          <ScalarProperty Name="tbAvaliacao_Id" ColumnName="tbAvaliacao_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

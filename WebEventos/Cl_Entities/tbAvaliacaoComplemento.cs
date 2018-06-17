@@ -15,6 +15,8 @@ namespace Cl_Entities
 
         public string tbAvaliacao_Titulo { get; set; }
 
+        public string tbAvaliacao_UserName { get; set; }
+
         public List<DropDownList> ListaResponsavel()
         {
             List<DropDownList> lista = new List<DropDownList>();
@@ -25,7 +27,7 @@ namespace Cl_Entities
                          join z in dbContext.tbAcesso
                          on x.tbAcesso_Id equals z.tbAcesso_Id
                          where x.tbUsuario_Ativo == true && z.tbAcesso_Nivel != "Baixo"
-                         select new DropDownList() { Id = x.tbUsuario_Email, Value = x.tbUsuario_Email }).ToList();
+                         select new DropDownList() { Id = x.tbUsuario_Id.ToString(), Value = x.tbUsuario_Email }).ToList();
             }
 
             return lista;

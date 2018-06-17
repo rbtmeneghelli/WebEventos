@@ -183,11 +183,9 @@ namespace WebEventos.Controllers
             else
                 avaliacao.idAction = 1;
 
-            ViewBag.ListaResponsavel = new SelectList(new tbAvaliacao().ListaResponsavel(), "Id", "Value", (string.IsNullOrWhiteSpace(avaliacao.tbAvaliacao_Responsavel) ? "Selecione" : avaliacao.tbAvaliacao_Responsavel));
+            ViewBag.ListaResponsavel = new SelectList(new tbAvaliacao().ListaResponsavel(), "Id", "Value", avaliacao.tbUsuario_Id == null || avaliacao.tbUsuario_Id == 0 ? 0 : avaliacao.tbUsuario_Id);
             ViewBag.ListaStatus = new SelectList(new tbAvaliacao().ListaStatus(), "Id", "Value", string.IsNullOrWhiteSpace(avaliacao.tbAvaliacao_Status) ? "Aprovado" : avaliacao.tbAvaliacao_Status);
-            ViewBag.ListaArquivo = new SelectList(new tbAvaliacao().ListaArquivo(), "Id", "Value", avaliacao.tbArquivo_Id == null || avaliacao.tbArquivo_Id == 0 ? 0 : avaliacao.tbArquivo_Id);
-            //ViewBag.ListaGrupo = new SelectList(new tbMangas().CampoGrupo(), "Id", "Desc", (string.IsNullOrWhiteSpace(MangasData.tbMangas_Grupo) ? "Selecione" : MangasData.tbMangas_Grupo));
-            //ViewBag.ListaEmprestado = new SelectList(new tbMangas().CampoEmprestado(), "Id", "Desc", (string.IsNullOrWhiteSpace(MangasData.tbMangas_Emprestado) ? "Selecione" : MangasData.tbMangas_Emprestado));
+            ViewBag.ListaArquivo = new SelectList(new tbAvaliacao().ListaArquivo(), "Id", "Value", avaliacao.tbArquivo_Id == null || avaliacao.tbArquivo_Id == 0 ? 0 : avaliacao.tbArquivo_Id);            
 
             return View(avaliacao);
         }
@@ -213,8 +211,9 @@ namespace WebEventos.Controllers
                     break;
             }
 
-            //ViewBag.ListaGrupo = new SelectList(new tbJogos().CampoGrupo(), "Id", "Desc", (string.IsNullOrWhiteSpace(JogosData.tbJogos_Grupo) ? "Selecione" : JogosData.tbJogos_Grupo));
-            //ViewBag.ListaEmprestado = new SelectList(new tbJogos().CampoEmprestado(), "Id", "Desc", (string.IsNullOrWhiteSpace(JogosData.tbJogos_Emprestado) ? "Selecione" : JogosData.tbJogos_Emprestado));
+            ViewBag.ListaResponsavel = new SelectList(new tbAvaliacao().ListaResponsavel(), "Id", "Value", avaliacao.tbUsuario_Id == null || avaliacao.tbUsuario_Id == 0 ? 0 : avaliacao.tbUsuario_Id);
+            ViewBag.ListaStatus = new SelectList(new tbAvaliacao().ListaStatus(), "Id", "Value", string.IsNullOrWhiteSpace(avaliacao.tbAvaliacao_Status) ? "Aprovado" : avaliacao.tbAvaliacao_Status);
+            ViewBag.ListaArquivo = new SelectList(new tbAvaliacao().ListaArquivo(), "Id", "Value", avaliacao.tbArquivo_Id == null || avaliacao.tbArquivo_Id == 0 ? 0 : avaliacao.tbArquivo_Id);            
 
             return View(Avaliacao);
         }

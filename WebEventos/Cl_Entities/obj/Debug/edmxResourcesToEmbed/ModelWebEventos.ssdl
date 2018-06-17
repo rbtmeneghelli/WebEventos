@@ -38,7 +38,6 @@
       <PropertyRef Name="tbAvaliacao_Id" />
     </Key>
     <Property Name="tbAvaliacao_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="tbAvaliacao_Responsavel" Type="varchar" MaxLength="100" />
     <Property Name="tbAvaliacao_Data" Type="datetime" />
     <Property Name="tbAvaliacao_Origem" Type="decimal" Precision="20" Scale="2" />
     <Property Name="tbAvaliacao_Objetivo" Type="decimal" Precision="20" Scale="2" />
@@ -49,6 +48,7 @@
     <Property Name="tbAvaliacao_Status" Type="varchar" MaxLength="40" />
     <Property Name="tbAvaliacao_UpdateTime" Type="datetime" />
     <Property Name="tbArquivo_Id" Type="bigint" />
+    <Property Name="tbUsuario_Id" Type="bigint" />
   </EntityType>
   <EntityType Name="tbEvento">
     <Key>
@@ -146,6 +146,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__tbAvaliac__tbUsu__01142BA1">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbAvaliacao" Type="Self.tbAvaliacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="tbUsuario_Id" />
+      </Principal>
+      <Dependent Role="tbAvaliacao">
+        <PropertyRef Name="tbUsuario_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__tbEvento__tbUsua__182C9B23">
     <End Role="tbArea" Type="Self.tbArea" Multiplicity="0..1" />
     <End Role="tbEvento" Type="Self.tbEvento" Multiplicity="*" />
@@ -229,6 +241,10 @@
     </AssociationSet>
     <AssociationSet Name="FK__tbAvaliac__tbArq__37A5467C" Association="Self.FK__tbAvaliac__tbArq__37A5467C">
       <End Role="tbArquivo" EntitySet="tbArquivo" />
+      <End Role="tbAvaliacao" EntitySet="tbAvaliacao" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbAvaliac__tbUsu__01142BA1" Association="Self.FK__tbAvaliac__tbUsu__01142BA1">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbAvaliacao" EntitySet="tbAvaliacao" />
     </AssociationSet>
     <AssociationSet Name="FK__tbEvento__tbUsua__182C9B23" Association="Self.FK__tbEvento__tbUsua__182C9B23">

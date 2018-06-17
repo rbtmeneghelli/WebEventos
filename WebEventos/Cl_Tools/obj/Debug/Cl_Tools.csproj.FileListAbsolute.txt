@@ -24,6 +24,5 @@ C:\Projetos\Git\WebEventos\WebEventos\Cl_Tools\bin\Debug\EntityFramework.dll
 C:\Projetos\Git\WebEventos\WebEventos\Cl_Tools\bin\Debug\EntityFramework.SqlServer.dll
 C:\Projetos\Git\WebEventos\WebEventos\Cl_Tools\bin\Debug\EntityFramework.xml
 C:\Projetos\Git\WebEventos\WebEventos\Cl_Tools\bin\Debug\EntityFramework.SqlServer.xml
-C:\Projetos\Git\WebEventos\WebEventos\Cl_Tools\obj\Debug\Cl_Tools.csprojResolveAssemblyReference.cache
 C:\Projetos\Git\WebEventos\WebEventos\Cl_Tools\obj\Debug\Cl_Tools.dll
 C:\Projetos\Git\WebEventos\WebEventos\Cl_Tools\obj\Debug\Cl_Tools.pdb

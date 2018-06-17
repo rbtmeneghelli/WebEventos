@@ -28,10 +28,10 @@ namespace Cl_Entities
         public virtual DbSet<tbAcesso> tbAcesso { get; set; }
         public virtual DbSet<tbArea> tbArea { get; set; }
         public virtual DbSet<tbArquivo> tbArquivo { get; set; }
+        public virtual DbSet<tbAvaliacao> tbAvaliacao { get; set; }
         public virtual DbSet<tbEvento> tbEvento { get; set; }
         public virtual DbSet<tbInstituicao> tbInstituicao { get; set; }
         public virtual DbSet<tbPalestra> tbPalestra { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
-        public virtual DbSet<tbAvaliacao> tbAvaliacao { get; set; }
     }
 }

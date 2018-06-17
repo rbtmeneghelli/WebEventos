@@ -17,13 +17,13 @@ namespace Cl_Entities
         public long tbAvaliacao_Id { get; set; }
         public string tbAvaliacao_Responsavel { get; set; }
         public Nullable<System.DateTime> tbAvaliacao_Data { get; set; }
-        public string tbAvaliacao_Tipo { get; set; }
         public Nullable<decimal> tbAvaliacao_Origem { get; set; }
         public Nullable<decimal> tbAvaliacao_Objetivo { get; set; }
         public Nullable<decimal> tbAvaliacao_Clareza { get; set; }
         public Nullable<decimal> tbAvaliacao_Dominio { get; set; }
         public Nullable<decimal> tbAvaliacao_Qualidade { get; set; }
         public Nullable<decimal> tbAvaliacao_Apresentacao { get; set; }
+        public string tbAvaliacao_Status { get; set; }
         public Nullable<System.DateTime> tbAvaliacao_UpdateTime { get; set; }
         public Nullable<long> tbArquivo_Id { get; set; }
     

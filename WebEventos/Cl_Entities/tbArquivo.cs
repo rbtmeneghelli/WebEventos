@@ -31,7 +31,7 @@ namespace Cl_Entities
     
         public virtual tbEvento tbEvento { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
-        public virtual ICollection<tbAvaliacao> tbAvaliacao { get; set; }
         public virtual tbPalestra tbPalestra { get; set; }
+        public virtual ICollection<tbAvaliacao> tbAvaliacao { get; set; }
     }
 }

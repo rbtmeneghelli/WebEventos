@@ -1,0 +1,149 @@
+﻿@model Cl_Entities.tbAvaliacao
+
+@{
+    ViewBag.Title = "Avaliação";
+}
+
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Painel</a></li>
+    <li><a href="#">Avaliação</a></li>
+    <li>Formulario Avaliação</li>
+</ul>
+
+<div class="well well-lg">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12">
+
+            @using (Html.BeginForm("Avaliacao", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", target = "_top", onsubmit = "return frmvalidaCampos(this)", language = "JavaScript", name = "frmAvaliacao" }))
+            {
+                <div class="panel panel-default">
+
+                    <div class="panel-heading" style="background-color: dodgerblue; color: white; font-weight: bolder; text-align: center;">
+                        Formulario Avaliação
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="form-group" style="float: left; padding-left: 2px;">
+                            @Html.HiddenFor(Model => Model.tbAvaliacao_Id)
+                            @Html.HiddenFor(Model => Model.idData)
+                            @Html.HiddenFor(Model => Model.idAction)
+                        </div>
+
+                        <div class="form-group" style="margin-top: 10px;">
+                            <div class="col-md-12">
+                                @Html.LabelFor(Model => Model.tbArquivo_Id, "Documento do Evento")
+                                @Html.DropDownListFor(Model => Model.tbArquivo_Id, (SelectList)ViewBag.ListaArquivo, new { @class = "form-control dropdown", @name = "ddArea", id = "ddArea" })
+                            </div>
+                        </div>
+
+                            <div class="form-group" style="margin-top: 10px;">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(Model => Model.tbAvaliacao_Responsavel, "Avaliador Responsavel")
+                                    @Html.TextBoxFor(Model => Model.tbAvaliacao_Responsavel, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtTitulo", id = "txtTitulo" })
+                                </div>
+
+                                <div class="col-md-6">
+                                    @Html.LabelFor(Model => Model.tbAvaliacao_Data, "Data da Avaliação")
+                                    @Html.TextBoxFor(Model => Model.tbAvaliacao_Data, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtData", id = "txtData" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 10px;">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(Model => Model.tbAvaliacao_Apresentacao, "Nota Apresentação")
+                                    @Html.TextBoxFor(Model => Model.tbAvaliacao_Apresentacao, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtData", id = "txtData" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.LabelFor(Model => Model.tbAvaliacao_Clareza, "Nota Clareza")
+                                    @Html.TextBoxFor(Model => Model.tbAvaliacao_Clareza, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtData", id = "txtData" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.LabelFor(Model => Model.tbAvaliacao_Dominio, "Nota Dominio")
+                                    @Html.TextBoxFor(Model => Model.tbAvaliacao_Dominio, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtData", id = "txtData" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.LabelFor(Model => Model.tbAvaliacao_Objetivo, "Nota Objetivo")
+                                    @Html.TextBoxFor(Model => Model.tbAvaliacao_Objetivo, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtData", id = "txtData" })
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 10px;">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(Model => Model.tbAvaliacao_Origem, "Nota Objetivo")
+                                    @Html.TextBoxFor(Model => Model.tbAvaliacao_Origem, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtData", id = "txtData" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.LabelFor(Model => Model.tbAvaliacao_Qualidade, "Nota Objetivo")
+                                    @Html.TextBoxFor(Model => Model.tbAvaliacao_Qualidade, new { @class = "form-control", @style = "max-width: 100% !important;", @name = "txtData", id = "txtData" })
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.LabelFor(Model => Model.tbAvaliacao_Status, "Status")
+                                    @Html.DropDownListFor(Model => Model.tbAvaliacao_Status, (SelectList)ViewBag.ListaStatus, new { @class = "form-control dropdown", @name = "ddResp", id = "ddResp" })
+                                </div>
+                            </div>
+
+                            <div style="float: right !important;">
+                                <a href="@Url.Action("ListAvaliacao","Home")" class="btn" style="background-color: dodgerblue; color: white;"> <i class="fa fa-arrow-left"> Voltar</i></a>
+                                <button type="button" class="btn limpar" value="Cancelar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-eraser"> Cancelar</i></button>
+                                <button type="submit" class="btn" value="Confirmar" style="background-color: dodgerblue; color: white;"> <i class="fa fa-save"> Confirmar</i></button>
+                            </div>
+
+                        </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        function frmvalidaCampos(objForm) {
+
+            if (frmBackup.txtServer.value == '') {
+                toastr.warning('Campo em branco, favor preencher', 'Servidor');
+                frmBackup.txtServer.focus();
+                return (false);
+            }
+
+            if (frmBackup.txtDb.value == '') {
+                toastr.warning('Campo em branco, favor preencher', 'Base de dados');
+                frmBackup.txtDb.focus();
+                return (false);
+            }
+
+            if (frmBackup.txtDir.value == '') {
+                toastr.error('Campo em branco, favor preencher', 'Diretorio');
+                frmBackup.txtDir.focus();
+                return (false);
+            }
+
+            return (true);
+        }
+</script>
+
+<script>
+    $(".limpar").click(function () {
+        $("#txtTitulo").val('');
+        $("#txtData").val('');
+        $("#txtTitulo").focus();
+    });
+</script> 

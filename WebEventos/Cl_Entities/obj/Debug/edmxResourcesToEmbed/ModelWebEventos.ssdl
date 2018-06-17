@@ -40,13 +40,13 @@
     <Property Name="tbAvaliacao_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tbAvaliacao_Responsavel" Type="varchar" MaxLength="100" />
     <Property Name="tbAvaliacao_Data" Type="datetime" />
-    <Property Name="tbAvaliacao_Tipo" Type="varchar" MaxLength="40" />
     <Property Name="tbAvaliacao_Origem" Type="decimal" Precision="20" Scale="2" />
     <Property Name="tbAvaliacao_Objetivo" Type="decimal" Precision="20" Scale="2" />
     <Property Name="tbAvaliacao_Clareza" Type="decimal" Precision="20" Scale="2" />
     <Property Name="tbAvaliacao_Dominio" Type="decimal" Precision="20" Scale="2" />
     <Property Name="tbAvaliacao_Qualidade" Type="decimal" Precision="20" Scale="2" />
     <Property Name="tbAvaliacao_Apresentacao" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="tbAvaliacao_Status" Type="varchar" MaxLength="40" />
     <Property Name="tbAvaliacao_UpdateTime" Type="datetime" />
     <Property Name="tbArquivo_Id" Type="bigint" />
   </EntityType>

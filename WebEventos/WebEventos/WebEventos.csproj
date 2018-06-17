@@ -206,6 +206,7 @@
     <Content Include="Views\Home\Palestra.cshtml" />
     <Content Include="Views\Home\ListArquivo.cshtml" />
     <Content Include="Views\Home\Arquivo.cshtml" />
+    <Content Include="Views\Home\Avaliacao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
